@@ -12,19 +12,19 @@ const config = {
   outputRoot: 'dist',
   plugins: [
     // '@tarojs/plugin-sass', // 使用 Sass
-    '@tarojs/plugin-less', // 使用 Less
+    // '@tarojs/plugin-less', // 使用 Less
     // '@tarojs/plugin-stylus', // 使用 Stylus
   ],
   defineConstants: {},
   copy: {
     patterns: [
       {
-        from: 'src/wxcomponents/vant/dist/wxs/',
-        to: 'dist/wxcomponents/vant/dist/wxs/'
+        from: 'src/wxcomponents/vant/lib/wxs/',
+        to: 'dist/wxcomponents/vant/lib/wxs/'
       },
       {
-        from: 'src/wxcomponents/vant/dist/',
-        to: 'dist/wxcomponents/vant/dist/'
+        from: 'src/wxcomponents/vant/lib/',
+        to: 'dist/wxcomponents/vant/lib/'
       },
     ],
     options: {}

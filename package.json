@@ -35,19 +35,25 @@
 	"license": "MIT",
 	"dependencies": {
 		"@babel/runtime": "^7.11.2",
-		"@tarojs/components": "3.0.8",
-		"@tarojs/runtime": "3.0.8",
-		"@tarojs/taro": "3.0.8",
+		"@tarojs/components": "3.0.9",
+		"@tarojs/plugin-less": "^2.2.10",
+		"@tarojs/runtime": "3.0.9",
+		"@tarojs/taro": "3.0.9",
+		"cos-wx-sdk-v5": "^0.7.11",
+		"dayjs": "^1.8.35",
+		"tim-wx-sdk": "^2.7.7",
 		"vue": "^3.0.0-rc.5",
 		"vuex": "^4.0.0-beta.2"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.11.1",
-		"@tarojs/mini-runner": "3.0.8",
-		"@tarojs/webpack-runner": "3.0.8",
+		"@tarojs/mini-runner": "3.0.9",
+		"@tarojs/webpack-runner": "3.0.9",
 		"@types/webpack-env": "^1.13.6",
 		"@vue/compiler-sfc": "^3.0.0-rc.5",
-		"babel-preset-taro": "3.0.8",
+		"babel-preset-taro": "3.0.9",
+		"less": "^3.12.2",
+		"less-loader": "^7.0.1",
 		"vue-loader": "^16.0.0-beta.3"
 	}
 }
