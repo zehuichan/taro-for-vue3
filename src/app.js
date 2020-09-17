@@ -7,11 +7,11 @@ import './wxcomponents/vant/lib/common/index.wxss'
 import './assets/scss/index.scss'
 
 // TIM相关
-import tim from './tim.js'
-import TIM from 'tim-wx-sdk'
+// import tim from './tim.js'
+// import TIM from 'tim-wx-sdk'
 
 // wxcomponents
-import Toast from './wxcomponents/vant/lib/toast/toast.js'
+// import Toast from './wxcomponents/vant/lib/toast/toast.js'
 
 const App = createApp({
   async onShow(options) {
