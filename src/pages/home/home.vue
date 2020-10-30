@@ -16,11 +16,15 @@
 </template>
 
 <script>
-  export default {
-    name: 'home'
-  }
+  export default {}
 </script>
 
-<style>
+<style lang="less">
+  .home {
+    font-size: 14px;
 
+    .button {
+      color: #000;
+    }
+  }
 </style>

@@ -10,11 +10,7 @@ const config = {
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
-  plugins: [
-    // '@tarojs/plugin-sass', // 使用 Sass
-    // '@tarojs/plugin-less', // 使用 Less
-    // '@tarojs/plugin-stylus', // 使用 Stylus
-  ],
+  plugins: [],
   defineConstants: {},
   copy: {
     patterns: [

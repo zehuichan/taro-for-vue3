@@ -4,7 +4,7 @@ import store from './store'
 // 每个页面公共css
 import './wxcomponents/vant/lib/common/index.wxss'
 // 全局less
-import './assets/scss/index.scss'
+import './assets/less/index.less'
 
 const App = createApp({
   async onShow(options) {

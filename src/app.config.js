@@ -30,7 +30,7 @@ export default {
     ]
   },
   usingComponents: {
-    // vant weapp v1.5.0 2020-08-27
+    // vant weapp v1.5.2 2020-10-15
     // 这里为方便，全局引入了所有组件，也可以在某个page下单独引用某个组件
 
     // 基础组件
