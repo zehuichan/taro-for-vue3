@@ -2,7 +2,7 @@
 	"name": "taro-tpl",
 	"version": "1.0.0",
 	"private": true,
-	"description": "",
+	"description": "taro tpl",
 	"templateInfo": {
 		"name": "vue3-vuex",
 		"typescript": false,
@@ -31,7 +31,7 @@
 		"Android >= 4.1",
 		"ios >= 8"
 	],
-	"author": "",
+	"author": "zehuichan",
 	"license": "MIT",
 	"dependencies": {
 		"@babel/runtime": "^7.11.2",
