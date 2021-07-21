@@ -3,26 +3,17 @@ const config = {
   date: '2020-7-3',
   designWidth: 375,
   deviceRatio: {
-    375: 1 / 2,
     640: 2.34 / 2,
     750: 1,
-    828: 1.81 / 2
+    828: 1.81 / 2,
+    375: 2 / 1
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
-  plugins: [],
+  plugins: ['@tarojs/plugin-html'],
   defineConstants: {},
   copy: {
-    patterns: [
-      {
-        from: 'src/wxcomponents/vant/lib/wxs/',
-        to: 'dist/wxcomponents/vant/lib/wxs/'
-      },
-      {
-        from: 'src/wxcomponents/vant/lib/',
-        to: 'dist/wxcomponents/vant/lib/'
-      },
-    ],
+    patterns: [],
     options: {}
   },
   framework: 'vue3',
