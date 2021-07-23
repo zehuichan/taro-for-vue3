@@ -24,7 +24,8 @@
 		"dev:h5": "npm run build:h5 -- --watch",
 		"dev:rn": "npm run build:rn -- --watch",
 		"dev:qq": "npm run build:qq -- --watch",
-		"dev:quickapp": "npm run build:quickapp -- --watch"
+		"dev:quickapp": "npm run build:quickapp -- --watch",
+		"new": "plop"
 	},
 	"browserslist": [
 		"last 3 versions",
@@ -50,6 +51,7 @@
 		"@types/webpack-env": "^1.13.6",
 		"@vue/compiler-sfc": "^3.1.5",
 		"babel-preset-taro": "3.3.0",
+		"plop": "^2.7.4",
 		"vue-loader": "^16.3.3"
 	}
 }
