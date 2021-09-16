@@ -1,7 +1,7 @@
 <template>
   <view class="home">
     <nut-button type="primary">点我</nut-button>
-    <nut-cell-group title="自定义右侧箭头区域">
+    <nut-cell-group title="自定义右侧箭头区域" round-radius="0">
       <nut-cell title="Switch">
         <template v-slot:link>
           <nut-switch v-model="switchChecked"/>

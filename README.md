@@ -1,3 +1,3 @@
-# 自用 taro-tpl for weapp
+# 自用 taro-tpl for vue3
 
-vue3 + vuex + vant-weapp
+vue3 + vuex + nutui

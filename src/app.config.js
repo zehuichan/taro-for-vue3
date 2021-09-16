@@ -6,7 +6,7 @@ export default {
   window: {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#fff',
-    navigationBarTitleText: 'taro-tpl',
+    navigationBarTitleText: 'taro-for-vue3',
     navigationBarTextStyle: 'black'
   },
   tabBar: {
