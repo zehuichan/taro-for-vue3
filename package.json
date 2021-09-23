@@ -2,7 +2,7 @@
   "name": "taro-tpl",
   "version": "1.0.0",
   "private": true,
-  "description": "taro tpl",
+  "description": "taro tpl for vue3",
   "templateInfo": {
     "name": "vue3-vuex",
     "typescript": false,

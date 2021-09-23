@@ -1,3 +1,4 @@
+import Taro from '@tarojs/taro'
 import { createApp } from 'vue'
 import store from './store'
 
@@ -7,6 +8,13 @@ import '@nutui/nutui-taro/dist/style.css'
 import './assets/less/index.less'
 
 const App = createApp({
+  created() {
+    console.log('created')
+    this.$instance = Taro.getCurrentInstance()
+  },
+  mounted() {
+    console.log('mounted')
+  },
   async onShow(options) {
     console.log('App Show', JSON.stringify(options))
   },

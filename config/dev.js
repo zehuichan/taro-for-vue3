@@ -1,9 +1,9 @@
 module.exports = {
   env: {
-    NODE_ENV: '"development"'
+    NODE_ENV: '"development"',
+    BASE_URL: '"https://www.tlr-law.com:443"'
   },
-  defineConstants: {
-  },
+  defineConstants: {},
   mini: {},
   h5: {}
 }

@@ -1,4 +1,4 @@
-import {createStore} from 'vuex'
+import { createStore } from 'vuex'
 import getters from './getters'
 
 // https://webpack.js.org/guides/dependency-management/#requirecontext

@@ -1,6 +1,7 @@
 export default {
   pages: [
     'pages/home/home',
+    'pages/api/api',
     'pages/my/my',
   ],
   window: {
@@ -10,22 +11,28 @@ export default {
     navigationBarTextStyle: 'black'
   },
   tabBar: {
-    color: '#333333',
-    selectedColor: '#4270f5',
+    color: '#6B7280',
+    selectedColor: '#1E3A8A',
     borderStyle: 'black',
     backgroundColor: '#ffffff',
     list: [
       {
         pagePath: 'pages/home/home',
-        text: '首页',
+        text: 'home',
         iconPath: 'assets/tabs/tab-1.png',
         selectedIconPath: 'assets/tabs/tab-1-active.png',
       },
       {
+        pagePath: 'pages/api/api',
+        text: 'api',
+        iconPath: 'assets/tabs/tab-2.png',
+        selectedIconPath: 'assets/tabs/tab-2-active.png',
+      },
+      {
         pagePath: 'pages/my/my',
-        text: '我的',
-        iconPath: 'assets/tabs/tab-5.png',
-        selectedIconPath: 'assets/tabs/tab-5-active.png',
+        text: 'about me',
+        iconPath: 'assets/tabs/tab-3.png',
+        selectedIconPath: 'assets/tabs/tab-3-active.png',
       },
     ]
   }

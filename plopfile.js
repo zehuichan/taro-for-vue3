@@ -1,6 +1,6 @@
-const pageGenerator = require('./tpls/page/prompt')
-const componentGenerator = require('./tpls/component/prompt')
-const storeGenerator = require('./tpls/store/prompt.js')
+const pageGenerator = require('./template/page/prompt')
+const componentGenerator = require('./template/component/prompt')
+const storeGenerator = require('./template/store/prompt.js')
 
 module.exports = function(plop) {
   plop.setGenerator('page', pageGenerator)

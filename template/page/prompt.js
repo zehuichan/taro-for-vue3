@@ -1,12 +1,12 @@
 const { notEmpty } = require('../utils.js')
 
 module.exports = {
-  description: 'generate vue component',
+  description: 'generate a view',
   prompts: [
     {
       type: 'input',
       name: 'name',
-      message: 'component name please',
+      message: 'view name please',
       validate: notEmpty('name')
     },
     {
@@ -32,25 +32,33 @@ module.exports = {
       ],
       validate(value) {
         if (value.indexOf('script') === -1 && value.indexOf('template') === -1) {
-          return 'Components require at least a <script> or <template> tag.'
+          return 'View require at least a <script> or <template> tag.'
         }
         return true
       }
     }
   ],
   actions: data => {
-    const name = '{{properCase name}}'
+    const name = '{{name}}'
     return [
       {
         type: 'add',
-        path: `src/components/${name}/index.vue`,
-        templateFile: 'tpls/component/index.hbs',
+        path: `src/pages/${name}/${name}.vue`,
+        templateFile: 'template/page/index.hbs',
         data: {
           name: name,
           template: data.blocks.includes('template'),
           script: data.blocks.includes('script'),
           style: data.blocks.includes('style')
         }
+      },
+      {
+        type: 'add',
+        path: `src/pages/${name}/${name}.config.js`,
+        templateFile: 'template/page/config.hbs',
+        data: {
+          name: name
+        },
       }
     ]
   }

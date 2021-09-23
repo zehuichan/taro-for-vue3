@@ -1,16 +1,15 @@
+import { getToken, setToken, removeToken } from '@/utils/auth'
+
 const state = {
+  token: getToken(),
   avatar: 'https://mall.s.maizuo.com/e915e2c990c30f8efa9e30bc75da41ee.jpg',
   tel: '15800066380',
   name: '陈泽辉',
 }
 
-const mutations = {
+const mutations = {}
 
-}
-
-const actions = {
-
-}
+const actions = {}
 
 export default {
   namespaced: true,

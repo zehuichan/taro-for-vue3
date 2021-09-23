@@ -52,7 +52,7 @@ module.exports = {
       {
         type: 'add',
         path: `src/store/modules/${name}.js`,
-        templateFile: 'tpls/store/index.hbs',
+        templateFile: 'template/store/index.hbs',
         data: {
           options: options.join(joinFlag),
           state: blocks.includes('state'),

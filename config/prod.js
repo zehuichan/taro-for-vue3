@@ -1,9 +1,9 @@
 module.exports = {
   env: {
-    NODE_ENV: '"production"'
+    NODE_ENV: '"production"',
+    BASE_URL: '"https://github.com/"'
   },
-  defineConstants: {
-  },
+  defineConstants: {},
   mini: {},
   h5: {
     /**
