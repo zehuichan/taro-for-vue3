@@ -36,27 +36,27 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.11.2",
-    "@tarojs/cli": "3.3.8",
     "@nutui/nutui-taro": "^3.1.5",
-    "@tarojs/runtime": "3.3.8",
-    "@tarojs/taro": "3.3.8",
+    "@tarojs/cli": "3.3.8",
     "@tarojs/components": "3.3.8",
     "@tarojs/plugin-html": "3.3.8",
+    "@tarojs/runtime": "3.3.8",
+    "@tarojs/taro": "3.3.8",
     "vue": "^3.1.5",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
-    "@types/webpack-env": "^1.13.6",
+    "@babel/core": "^7.11.1",
     "@tarojs/mini-runner": "3.3.8",
     "@tarojs/webpack-runner": "3.3.8",
-    "@babel/core": "^7.11.1",
-    "babel-preset-taro": "3.3.8",
+    "@types/webpack-env": "^1.13.6",
     "@vue/compiler-sfc": "^3.1.5",
-    "vue-loader": "^16.3.3",
-    "eslint-plugin-vue": "^7.0.0",
-    "eslint-config-taro": "3.3.8",
+    "babel-preset-taro": "3.3.8",
     "eslint": "^6.8.0",
+    "eslint-config-taro": "3.3.8",
+    "eslint-plugin-vue": "^7.0.0",
+    "plop": "^2.7.4",
     "stylelint": "9.3.0",
-    "plop": "^2.7.4"
+    "vue-loader": "^16.3.3"
   }
 }
