@@ -1,7 +1,13 @@
 const path = require('path')
 
+function resolve(dir) {
+  return path.join(__dirname, '..', dir)
+}
+
+const isProd = process.env.NODE_ENV === 'production'
+
 const config = {
-  projectName: 'taro-tpl',
+  projectName: 'taro-tpl-for-vue3',
   date: '2020-7-3',
   designWidth: 375,
   deviceRatio: {
@@ -19,9 +25,6 @@ const config = {
     options: {}
   },
   framework: 'vue3',
-  alias: {
-    '@': path.resolve(__dirname, '..', 'src')
-  },
   mini: {
     postcss: {
       pxtransform: {
@@ -40,6 +43,13 @@ const config = {
           namingPattern: 'module', // 转换模式，取值为 global/module
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
+      }
+    },
+    webpackChain: (config) => {
+      config.resolve.alias.set('@', resolve('src'))
+
+      if (isProd) {
+        // todo 图片资源cdn切换
       }
     }
   },

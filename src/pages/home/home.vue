@@ -29,6 +29,7 @@ export default {
         fnType: 'add'
       }
       orderDeliverFuc(data).then((res) => {
+        console.log(res)
       }).catch((err) => {
         console.log(err)
       })

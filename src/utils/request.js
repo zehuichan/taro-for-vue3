@@ -20,38 +20,31 @@ const interceptor = (chain) => {
   // please modify it according to the actual situation
   if (store.getters.token) {
     config.header = {
+      ...config.header,
       Authorization: getToken()
     }
   }
 
-  return chain.proceed(config)
-    .then(res => {
-      console.log(`http <-- ${config.url} result:`, res)
-      return res
-    })
+  return chain.proceed(config).then(res => {
+    return res
+  })
 }
 
 Taro.addInterceptor(interceptor)
-// log
-Taro.addInterceptor(Taro.interceptors.logInterceptor)
-// timeout
-Taro.addInterceptor(Taro.interceptors.timeoutInterceptor)
 
 const TIMEOUT = 60 * 1000
 
-const http = ({ url, method, header, data, timeout }) => {
+const http = (options) => {
   return new Promise((resolve, reject) => {
     Taro.request({
-      url: process.env.BASE_URL + url,
-      method,
-      header,
-      data,
-      timeout: timeout || TIMEOUT,
-      success: (response) => {
+      ...(options || {}),
+      url: process.env.BASE_URL + options.url,
+      timeout: options.timeout || TIMEOUT,
+      success(response) {
         const res = response.data
         resolve(res)
       },
-      fail: (error) => {
+      fail(error) {
         console.log('error', error)
         reject(error)
       }
