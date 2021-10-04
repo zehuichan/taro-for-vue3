@@ -4,7 +4,7 @@ function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
-const isProd = process.env.NODE_ENV === 'production'
+const isProd = process.env.NODE_ENV !== 'production'
 
 const config = {
   projectName: 'taro-tpl-for-vue3',
@@ -25,6 +25,9 @@ const config = {
     options: {}
   },
   framework: 'vue3',
+  alias: {
+    '@': resolve('src')
+  },
   mini: {
     postcss: {
       pxtransform: {
@@ -45,12 +48,18 @@ const config = {
         }
       }
     },
-    webpackChain: (config) => {
-      config.resolve.alias.set('@', resolve('src'))
-
-      if (isProd) {
-        // todo 图片资源cdn切换
-      }
+    webpackChain(config) {
+      // config
+      //   .module
+      //   .rule('images')
+      //   .test(/\.(png|jpe?g|gif)$/i)
+      //   .use('url-loader')
+      //   .loader('url-loader')
+      //   .options({
+      //     fallback: 'responsive-loader',
+      //     quality: 85,
+      //   })
+      //   .end()
     }
   },
   h5: {

@@ -1,38 +1,15 @@
 <template>
   <view class="home">
-
+    <image src="@/assets/img/stats.png" mode="scaleToFill"/>
+    <image src="@/assets/img/languages.png" mode="scaleToFill"/>
   </view>
 </template>
 
 <script>
-// api
-import { pageList, orderDeliverFuc } from '@/api'
-
 export default {
   data() {
     return {
       switchChecked: false
-    }
-  },
-  created() {
-    this._orderDeliverFuc()
-  },
-  methods: {
-    initData() {
-      pageList().then((res) => {
-        console.log('pageList', res)
-      })
-    },
-    _orderDeliverFuc() {
-      const data = {
-        id: '123131231213123',
-        fnType: 'add'
-      }
-      orderDeliverFuc(data).then((res) => {
-        console.log(res)
-      }).catch((err) => {
-        console.log(err)
-      })
     }
   }
 }
