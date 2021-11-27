@@ -1,5 +1,5 @@
 <template>
-  <div>Api</div>
+  <view>Api</view>
 </template>
 
 <script>

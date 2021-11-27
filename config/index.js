@@ -18,7 +18,10 @@ const config = {
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
-  plugins: ['@tarojs/plugin-html'],
+  plugins: [
+    '@tarojs/plugin-html',
+    'taro-plugin-pinia'
+  ],
   defineConstants: {},
   copy: {
     patterns: [],

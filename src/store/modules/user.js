@@ -1,19 +1,13 @@
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { defineStore } from 'pinia'
 
-const state = {
-  token: getToken(),
-  avatar: 'https://mall.s.maizuo.com/e915e2c990c30f8efa9e30bc75da41ee.jpg',
-  tel: '15800066380',
-  name: '陈泽辉',
-}
-
-const mutations = {}
-
-const actions = {}
-
-export default {
-  namespaced: true,
-  state,
-  mutations,
-  actions
-}
+export const useUserStore = defineStore({
+  id: 'user',
+  state: () => ({
+    avatar: '',
+    cellphone: '',
+    username: '',
+    github: '',
+  }),
+  getters: {},
+  actions: {}
+})
