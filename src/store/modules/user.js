@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { store } from '../index'
 
 export const useUserStore = defineStore({
   id: 'user',
@@ -11,3 +12,7 @@ export const useUserStore = defineStore({
   getters: {},
   actions: {}
 })
+
+export function useUserStoreWithInstall() {
+  return useUserStore(store)
+}
