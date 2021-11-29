@@ -1,20 +1,24 @@
 <template>
   <view class="home">
-    {{appStore.count}}
+    {{ appStore.count }}
+    {{ value }}
+    <nut-input
+      v-model="value"
+      label="文本"
+    />
   </view>
 </template>
 
-<script>
-import { useAppStore } from '../../store/modules/app.js'
+<script setup>
+// vue
+import { ref } from 'vue'
+// store
+import { useAppStoreWithInstall } from '@/store/modules/app'
+// hooks
+import useStorage from '@/hooks/useStorage'
 
-export default {
-  setup() {
-    const appStore = useAppStore()
-    return {
-      appStore
-    }
-  }
-}
+const appStore = useAppStoreWithInstall()
+const value = ref(useStorage('input'))
 </script>
 
 <style lang="less">

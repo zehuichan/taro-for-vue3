@@ -5,7 +5,7 @@ import { store } from './store'
 import NutUI from '@nutui/nutui-taro'
 import '@nutui/nutui-taro/dist/style.css'
 // 全局less
-import './assets/less/index.less'
+import '@/assets/less/index.less'
 
 const App = createApp({
   created() {

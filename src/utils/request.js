@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
-import store from '@/store'
-import { getToken } from '@/utils/auth'
+// utils
+import cache from '@/utils/cache'
 
 // 格式化url，返回形参
 const formatUrl = (url = '', json) => {
@@ -18,10 +18,12 @@ const interceptor = (chain) => {
   // let each request carry token
   // ['X-Token'] is a custom headers key
   // please modify it according to the actual situation
-  if (store.getters.token) {
+  const token = cache.getItem('token')
+
+  if (token) {
     config.header = {
       ...config.header,
-      Authorization: getToken()
+      Authorization: token
     }
   }
 
