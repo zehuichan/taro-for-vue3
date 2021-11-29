@@ -1,14 +1,17 @@
 <template>
   <view class="home">
-
+    {{appStore.count}}
   </view>
 </template>
 
 <script>
+import { useAppStore } from '../../store/modules/app.js'
+
 export default {
-  data() {
+  setup() {
+    const appStore = useAppStore()
     return {
-      switchChecked: false
+      appStore
     }
   }
 }
