@@ -1,10 +1,18 @@
 const path = require('path')
+const pkg = require('../package.json')
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
 const isProd = process.env.NODE_ENV !== 'production'
+
+const { dependencies, name, version } = pkg
+
+const __APP_INFO__ = {
+  pkg: { dependencies, name, version },
+  lastBuildTime: new Date(),
+}
 
 const config = {
   projectName: 'taro-tpl-for-vue3',
@@ -14,7 +22,7 @@ const config = {
     640: 2.34 / 2,
     750: 1,
     828: 1.81 / 2,
-    375: 2
+    375: 2 / 1
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
@@ -22,7 +30,9 @@ const config = {
     '@tarojs/plugin-html',
     'taro-plugin-pinia'
   ],
-  defineConstants: {},
+  defineConstants: {
+    __APP_INFO__: JSON.stringify(__APP_INFO__),
+  },
   copy: {
     patterns: [],
     options: {}

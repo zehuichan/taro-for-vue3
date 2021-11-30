@@ -24,4 +24,5 @@ const App = createApp({
 App.use(NutUI)
 App.use(store)
 
+console.info(__APP_INFO__)
 export default App

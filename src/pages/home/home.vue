@@ -15,7 +15,7 @@ import { ref } from 'vue'
 // store
 import { useAppStoreWithInstall } from '@/store/modules/app'
 // hooks
-import useStorage from '@/hooks/useStorage'
+import { useStorage } from '@/hooks'
 
 const appStore = useAppStoreWithInstall()
 const value = ref(useStorage('input'))
