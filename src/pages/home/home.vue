@@ -1,11 +1,11 @@
 <template>
   <view class="home">
-    {{ appStore.count }}
-    {{ value }}
     <nut-input
       v-model="value"
       label="文本"
     />
+
+    <text class="iconfont icon-home"></text>
   </view>
 </template>
 

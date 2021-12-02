@@ -1,16 +1,13 @@
-{{#if state}}
-const state = {}
-{{/if}}
+import { defineStore } from 'pinia'
+import { store } from '../index'
 
-{{#if mutations}}
-const mutations = {}
-{{/if}}
+export const use{{pascalCase name}}Store = defineStore({
+  id: '{{name}}',
+  state: () => ({}),
+  getters: {},
+  actions: {}
+})
 
-{{#if actions}}
-const actions = {}
-{{/if}}
-
-export default {
-  namespaced: true,
-  {{options}}
+export function use{{pascalCase name}}StoreWithInstall() {
+  return use{{pascalCase name}}Store(store)
 }
