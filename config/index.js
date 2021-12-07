@@ -10,7 +10,9 @@ const isProd = process.env.NODE_ENV !== 'production'
 const { dependencies, name, version } = pkg
 
 const __APP_INFO__ = {
-  pkg: { dependencies, name, version },
+  dependencies,
+  name,
+  version,
   lastBuildTime: new Date(),
 }
 
