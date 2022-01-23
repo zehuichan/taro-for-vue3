@@ -4,8 +4,6 @@
       v-model="value"
       label="文本"
     />
-
-    <text class="iconfont icon-home"></text>
   </view>
 </template>
 

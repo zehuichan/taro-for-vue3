@@ -1,5 +1,6 @@
 const path = require('path')
 const pkg = require('../package.json')
+const dayjs = require('dayjs')
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -13,7 +14,7 @@ const __APP_INFO__ = {
   dependencies,
   name,
   version,
-  lastBuildTime: new Date(),
+  lastBuildTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
 }
 
 const config = {
@@ -52,7 +53,7 @@ const config = {
       url: {
         enable: true,
         config: {
-          limit: 1024 // 设定转换尺寸上限
+          limit: 10240 // 设定转换尺寸上限
         }
       },
       cssModules: {
@@ -63,8 +64,8 @@ const config = {
         }
       }
     },
-    webpackChain(config) {
-      // config
+    webpackChain(chain, webpack) {
+      // chain
       //   .module
       //   .rule('images')
       //   .test(/\.(png|jpe?g|gif)$/i)
