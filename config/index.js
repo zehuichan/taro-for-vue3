@@ -1,6 +1,6 @@
 const path = require('path')
-const pkg = require('../package.json')
 const dayjs = require('dayjs')
+const pkg = require('../package.json')
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)

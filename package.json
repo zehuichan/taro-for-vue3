@@ -1,64 +1,66 @@
 {
-	"name": "taro-tpl",
-	"version": "1.0.0",
-	"private": true,
-	"description": "taro tpl for vue3",
-	"templateInfo": {
-		"name": "vue3-vuex",
-		"typescript": false,
-		"css": "less"
-	},
-	"scripts": {
-		"build:weapp": "taro build --type weapp",
-		"build:swan": "taro build --type swan",
-		"build:alipay": "taro build --type alipay",
-		"build:tt": "taro build --type tt",
-		"build:h5": "taro build --type h5",
-		"build:rn": "taro build --type rn",
-		"build:qq": "taro build --type qq",
-		"build:quickapp": "taro build --type quickapp",
-		"dev:weapp": "npm run build:weapp -- --watch",
-		"dev:swan": "npm run build:swan -- --watch",
-		"dev:alipay": "npm run build:alipay -- --watch",
-		"dev:tt": "npm run build:tt -- --watch",
-		"dev:h5": "npm run build:h5 -- --watch",
-		"dev:rn": "npm run build:rn -- --watch",
-		"dev:qq": "npm run build:qq -- --watch",
-		"dev:quickapp": "npm run build:quickapp -- --watch",
-		"new": "plop"
-	},
-	"browserslist": [
-		"last 3 versions",
-		"Android >= 4.1",
-		"ios >= 8"
-	],
-	"author": "zehuichan",
-	"license": "MIT",
-	"dependencies": {
-		"@babel/runtime": "^7.11.2",
-		"@nutui/nutui-taro": "^3.1.12",
-		"@tarojs/components": "3.4.0",
-		"@tarojs/plugin-html": "3.3.12",
-		"@tarojs/runtime": "3.4.0",
-		"@tarojs/taro": "3.4.0",
-		"dayjs": "^1.10.7",
-		"pinia": "^2.0.4",
-		"taro-plugin-pinia": "^1.0.0",
-		"vue": "^3.2.23"
-	},
-	"devDependencies": {
-		"@babel/core": "^7.11.1",
-		"@tarojs/mini-runner": "3.4.0",
-		"@tarojs/webpack-runner": "3.4.0",
-		"@types/webpack-env": "^1.13.6",
-		"@vue/compiler-sfc": "^3.2.23",
-		"babel-preset-taro": "3.4.0",
-		"eslint": "^6.8.0",
-		"eslint-config-taro": "3.4.0",
-		"eslint-plugin-vue": "^7.0.0",
-		"plop": "^3.0.1",
-		"stylelint": "9.3.0",
-		"terser-webpack-plugin": "^3.1.0",
-		"vue-loader": "^16.8.3"
-	}
+  "name": "taro-tpl",
+  "version": "1.0.0",
+  "private": true,
+  "description": "taro tpl for vue3",
+  "templateInfo": {
+    "name": "vue3-pinia",
+    "typescript": false,
+    "css": "less"
+  },
+  "scripts": {
+    "build:weapp": "taro build --type weapp",
+    "build:swan": "taro build --type swan",
+    "build:alipay": "taro build --type alipay",
+    "build:tt": "taro build --type tt",
+    "build:h5": "taro build --type h5",
+    "build:rn": "taro build --type rn",
+    "build:qq": "taro build --type qq",
+    "build:quickapp": "taro build --type quickapp",
+    "dev:weapp": "npm run build:weapp -- --watch",
+    "dev:swan": "npm run build:swan -- --watch",
+    "dev:alipay": "npm run build:alipay -- --watch",
+    "dev:tt": "npm run build:tt -- --watch",
+    "dev:h5": "npm run build:h5 -- --watch",
+    "dev:rn": "npm run build:rn -- --watch",
+    "dev:qq": "npm run build:qq -- --watch",
+    "dev:quickapp": "npm run build:quickapp -- --watch",
+    "new": "plop"
+  },
+  "browserslist": [
+    "last 3 versions",
+    "Android >= 4.1",
+    "ios >= 8"
+  ],
+  "author": "zehuichan",
+  "license": "MIT",
+  "dependencies": {
+    "@antv/f2": "^3.8.10",
+    "@babel/runtime": "^7.11.2",
+    "@nutui/nutui-taro": "^3.1.12",
+    "@tarojs/components": "3.4.2",
+    "@tarojs/plugin-framework-vue3": "3.4.2",
+    "@tarojs/plugin-html": "3.3.12",
+    "@tarojs/runtime": "3.4.2",
+    "@tarojs/taro": "3.4.2",
+    "dayjs": "^1.10.7",
+    "pinia": "^2.0.6",
+    "taro-plugin-pinia": "^1.0.0",
+    "vue": "^3.2.24"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@tarojs/mini-runner": "3.4.2",
+    "@tarojs/webpack-runner": "3.4.2",
+    "@types/webpack-env": "^1.13.6",
+    "@vue/compiler-sfc": "^3.2.31",
+    "babel-preset-taro": "3.4.2",
+    "eslint": "^6.8.0",
+    "eslint-config-taro": "3.4.2",
+    "eslint-plugin-vue": "^7.0.0",
+    "plop": "^3.0.1",
+    "stylelint": "9.3.0",
+    "terser-webpack-plugin": "^3.1.0",
+    "vue-loader": "^16.8.3"
+  }
 }
