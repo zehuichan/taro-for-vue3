@@ -2,6 +2,9 @@
   <canvas
     type="2d"
     class="f2-canvas"
+    id="canvas"
+    canvasId="canvas"
+    canvas-id="canvas"
     @touchStart="touchStart"
     @touchMove="touchMove"
     @touchEnd="touchEnd"
@@ -40,7 +43,7 @@ export default {
     initChart() {
       Taro
         .createSelectorQuery()
-        .select('.f2-canvas')
+        .select('#canvas')
         .fields({ node: true, size: true })
         .exec((res) => {
           const { node, width, height } = res[0]
