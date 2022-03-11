@@ -1,14 +1,16 @@
 <template>
   <canvas
-    id="canvas"
-    canvas-id="canvas"
-    class="f2-canvas"
     type="2d"
+    class="f2-canvas"
+    @touchStart="touchStart"
+    @touchMove="touchMove"
+    @touchEnd="touchEnd"
   />
 </template>
 
 <script>
-import Taro from '@tarojs/taro'
+import Taro, { eventCenter, getCurrentInstance } from '@tarojs/taro'
+import { Canvas } from '@antv/f2'
 
 function wrapEvent(e) {
   if (!e) return
@@ -22,49 +24,65 @@ function wrapEvent(e) {
 export default {
   name: 'F2Canvas',
   props: {
-    id: String,
-    init: Function
+    init: Function,
   },
   mounted() {
-    this.initChart()
+    eventCenter.once(getCurrentInstance().router.onReady, () => {
+      this.initChart()
+    })
+  },
+  beforeUnmount() {
+    const { canvas } = this
+    if (!canvas) return
+    canvas.destroy()
   },
   methods: {
     initChart() {
-      const query = Taro.createSelectorQuery()
-      query
-        .select('#canvas')
-        .boundingClientRect()
+      Taro
+        .createSelectorQuery()
+        .select('.f2-canvas')
+        .fields({ node: true, size: true })
         .exec((res) => {
-          console.log(res)
-          const { node } = res[0]
-          const context = Canvas.getContext('2d')
-
-          this.chart = this.init({
-            context: context,
-            width: this.width,
-            height: this.height,
-            pixelRatio: Taro.getSystemInfoSync().pixelRatio
+          const { node, width, height } = res[0]
+          const context = node.getContext('2d')
+          const pixelRatio = Taro.getSystemInfoSync().pixelRatio
+          // 高清设置
+          node.width = width * pixelRatio
+          node.height = height * pixelRatio
+          const children = this.init()
+          const canvas = new Canvas({
+            pixelRatio,
+            width,
+            height,
+            context,
+            children,
           })
+          canvas.render()
+          this.canvas = canvas
+          this.canvasEl = canvas.canvas.get('el')
         })
     },
     touchStart(e) {
-      if (!this.canvasEl) {
+      const canvasEl = this.canvasEl
+      if (!canvasEl) {
         return
       }
-      this.canvasEl.dispatchEvent('touchstart', wrapEvent(e))
+      canvasEl.dispatchEvent('touchstart', wrapEvent(e))
     },
     touchMove(e) {
-      if (!this.canvasEl) {
+      const canvasEl = this.canvasEl
+      if (!canvasEl) {
         return
       }
-      this.canvasEl.dispatchEvent('touchMove', wrapEvent(e))
+      canvasEl.dispatchEvent('touchmove', wrapEvent(e))
     },
     touchEnd(e) {
-      if (!this.canvasEl) {
+      const canvasEl = this.canvasEl
+      if (!canvasEl) {
         return
       }
-      this.canvasEl.dispatchEvent('touchEnd', wrapEvent(e))
-    }
+      canvasEl.dispatchEvent('touchend', wrapEvent(e))
+    },
   },
 }
 </script>

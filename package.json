@@ -36,7 +36,7 @@
   "author": "zehuichan",
   "license": "MIT",
   "dependencies": {
-    "@antv/f2": "^3.8.10",
+    "@antv/f2": "^4.0.6",
     "@babel/runtime": "^7.11.2",
     "@nutui/nutui-taro": "^3.1.17",
     "@tarojs/components": "3.4.3",
