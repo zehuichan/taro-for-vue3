@@ -11,7 +11,6 @@ export default function useStorage(key, defaultValue) {
       try {
         return JSON.parse(raw)
       } catch {
-        //
       }
     }
 
