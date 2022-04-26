@@ -45,6 +45,23 @@ const config = {
     '@': resolve('src')
   },
   mini: {
+    webpackChain(chain) {
+      chain.merge({
+        module: {
+          rule: {
+            mjsScript: {
+              test: /\.mjs$/,
+              include: [/pinia/],
+              use: {
+                babelLoader: {
+                  loader: require.resolve('babel-loader')
+                }
+              }
+            }
+          }
+        }
+      })
+    },
     postcss: {
       pxtransform: {
         enable: true,
@@ -63,19 +80,6 @@ const config = {
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
-    },
-    webpackChain(chain, webpack) {
-      // chain
-      //   .module
-      //   .rule('images')
-      //   .test(/\.(png|jpe?g|gif)$/i)
-      //   .use('url-loader')
-      //   .loader('url-loader')
-      //   .options({
-      //     fallback: 'responsive-loader',
-      //     quality: 85,
-      //   })
-      //   .end()
     }
   },
   h5: {
