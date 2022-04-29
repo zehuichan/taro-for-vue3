@@ -2,7 +2,16 @@ export default {
   pages: [
     'pages/home/home',
     'pages/api/api',
-    'pages/my/my',
+    'pages/about/index',
+  ],
+  subPackages: [
+    {
+      root: 'pages/account',
+      pages: [
+        'center/index',
+        'settings/index',
+      ]
+    }
   ],
   window: {
     backgroundTextStyle: 'light',
@@ -29,8 +38,8 @@ export default {
         selectedIconPath: 'assets/tabs/tab-2-active.png',
       },
       {
-        pagePath: 'pages/my/my',
-        text: 'about me',
+        pagePath: 'pages/about/index',
+        text: 'about',
         iconPath: 'assets/tabs/tab-3.png',
         selectedIconPath: 'assets/tabs/tab-3-active.png',
       },
