@@ -1,7 +1,7 @@
 module.exports = {
   env: {
-    NODE_ENV: '"production"',
-    BASE_URL: '"/prod-api"'
+    NODE_ENV: '"staging"',
+    BASE_URL: '"/stage-api"'
   },
   defineConstants: {},
   mini: {},

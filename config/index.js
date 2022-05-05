@@ -6,20 +6,17 @@ function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
-const isProd = process.env.NODE_ENV !== 'production'
-
-const { dependencies, name, version } = pkg
+const { name, version } = pkg
 
 const __APP_INFO__ = {
-  dependencies,
   name,
   version,
   lastBuildTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
 }
 
 const config = {
-  projectName: 'taro-tpl-for-vue3',
-  date: '2020-7-3',
+  projectName: 'zhongshi-taro',
+  date: '2022-4-26',
   designWidth: 375,
   deviceRatio: {
     640: 2.34 / 2,
@@ -33,8 +30,17 @@ const config = {
     '@tarojs/plugin-html',
     'taro-plugin-pinia'
   ],
+  terser: {
+    enable: ['production', 'staging'].indexOf(process.env.NODE_ENV) > -1,
+    config: {
+      compress: true, // 默认使用terser压缩
+      // mangle: false,
+      keep_classnames: true, // 不改变class名称
+      keep_fnames: true // 不改变函数名称
+    }
+  },
   defineConstants: {
-    __APP_INFO__: JSON.stringify(__APP_INFO__),
+    __APP_INFO__: JSON.stringify(__APP_INFO__)
   },
   copy: {
     patterns: [],
@@ -102,8 +108,13 @@ const config = {
 }
 
 module.exports = function (merge) {
+  console.log(process.env.NODE_ENV)
+  console.log(['production', 'staging'].indexOf(process.env.NODE_ENV) > -1)
   if (process.env.NODE_ENV === 'development') {
     return merge({}, config, require('./dev'))
+  }
+  if (process.env.NODE_ENV === 'staging') {
+    return merge({}, config, require('./stage'))
   }
   return merge({}, config, require('./prod'))
 }

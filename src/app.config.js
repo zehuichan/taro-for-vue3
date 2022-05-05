@@ -1,7 +1,6 @@
 export default {
   pages: [
     'pages/home/home',
-    'pages/api/api',
     'pages/about/index',
   ],
   subPackages: [
@@ -30,12 +29,6 @@ export default {
         text: 'home',
         iconPath: 'assets/tabs/tab-1.png',
         selectedIconPath: 'assets/tabs/tab-1-active.png',
-      },
-      {
-        pagePath: 'pages/api/api',
-        text: 'api',
-        iconPath: 'assets/tabs/tab-2.png',
-        selectedIconPath: 'assets/tabs/tab-2-active.png',
       },
       {
         pagePath: 'pages/about/index',
