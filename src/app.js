@@ -28,5 +28,7 @@ function bootstrap() {
   return app
 }
 
-console.info(__APP_INFO__)
+console.info('[info] ' + 'BASE_URL', process.env.BASE_URL)
+console.info('[info] ' + 'NODE_ENV', process.env.NODE_ENV)
+console.info('[info] ' + 'AppInfo', __APP_INFO__)
 export default bootstrap()
