@@ -13,3 +13,4 @@ dist
 /bin
 Dockerfile
 .eslintrc.js
+index.html
