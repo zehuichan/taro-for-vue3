@@ -5,7 +5,10 @@
 ## 安装
 
 ```bash
-# 安装依赖
+# 使用 yarn 安装依赖
+yarn install
+
+# OR 使用 npm 安装依赖
 npm install
 
 # 建议不要直接使用 cnpm 安装依赖，会有各种诡异的 bug。可以通过如下操作解决 npm 下载速度慢的问题
@@ -58,12 +61,6 @@ npm run stage:alipay # 预发环境 (开启terser压缩)
 
 ```
 root:.
-│  .editorconfig
-│  .eslintrc
-│  .gitignore
-│  babel.config.js
-│  jsconfig.json
-│  package.json
 │  project.config.json # 微信小程序项目配置
 │  project.private.config.json
 │  project.tt.json
@@ -129,7 +126,7 @@ root:.
     ├─plugins
     │      nutui.js
     │      
-    ├─store
+    ├─store # pinia
     │  │  index.js
     │  │  
     │  └─modules

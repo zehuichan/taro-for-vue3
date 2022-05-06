@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "./",
-  "projectname": "myApp",
-  "description": "",
+  "projectname": "zhongshi-taro",
+  "description": "taro+vue3+pinia+nutui3",
   "appid": "touristappid",
   "setting": {
     "urlCheck": true,

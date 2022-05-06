@@ -15,7 +15,7 @@ const __APP_INFO__ = {
 }
 
 const config = {
-  projectName: 'zhongshi-taro',
+  projectName: 'taro-for-vue3',
   date: '2022-4-26',
   designWidth: 375,
   deviceRatio: {
@@ -108,8 +108,6 @@ const config = {
 }
 
 module.exports = function (merge) {
-  console.log(process.env.NODE_ENV)
-  console.log(['production', 'staging'].indexOf(process.env.NODE_ENV) > -1)
   if (process.env.NODE_ENV === 'development') {
     return merge({}, config, require('./dev'))
   }
