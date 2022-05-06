@@ -10,8 +10,7 @@ export default function useStorage(key, defaultValue) {
     if (raw) {
       try {
         return JSON.parse(raw)
-      } catch {
-      }
+      } catch {}
     }
 
     return defaultValue

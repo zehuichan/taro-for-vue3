@@ -12,7 +12,7 @@ export const useAppStore = defineStore({
     setThemeMode(theme) {
       this.theme = theme
     }
-  },
+  }
 })
 
 export function useAppStoreWithInstall() {

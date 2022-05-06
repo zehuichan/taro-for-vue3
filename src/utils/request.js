@@ -27,7 +27,7 @@ const interceptor = (chain) => {
     }
   }
 
-  return chain.proceed(config).then(res => {
+  return chain.proceed(config).then((res) => {
     return res
   })
 }

@@ -1,15 +1,9 @@
 export default {
-  pages: [
-    'pages/home/home',
-    'pages/about/index',
-  ],
+  pages: ['pages/home/index', 'pages/about/index'],
   subPackages: [
     {
       root: 'pages/account',
-      pages: [
-        'center/index',
-        'settings/index',
-      ]
+      pages: ['center/index', 'settings/index']
     }
   ],
   window: {
@@ -28,14 +22,14 @@ export default {
         pagePath: 'pages/home/home',
         text: 'home',
         iconPath: 'assets/tabs/tab-1.png',
-        selectedIconPath: 'assets/tabs/tab-1-active.png',
+        selectedIconPath: 'assets/tabs/tab-1-active.png'
       },
       {
         pagePath: 'pages/about/index',
         text: 'about',
         iconPath: 'assets/tabs/tab-3.png',
-        selectedIconPath: 'assets/tabs/tab-3-active.png',
-      },
+        selectedIconPath: 'assets/tabs/tab-3-active.png'
+      }
     ]
   }
 }

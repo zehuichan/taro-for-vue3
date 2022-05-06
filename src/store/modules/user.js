@@ -7,7 +7,7 @@ export const useUserStore = defineStore({
     avatar: '',
     cellphone: '',
     username: '',
-    github: '',
+    github: ''
   }),
   getters: {},
   actions: {}
