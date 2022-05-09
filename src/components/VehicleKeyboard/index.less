@@ -1,0 +1,98 @@
+.vehicle-plate-keyboard {
+  width: 100%;
+  user-select: none;
+  min-height: 276rpx;
+  background-color: #e8e9eb;
+  box-shadow: 0 0 12rpx 0 rgb(0 0 0 / 20%);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
+    sans-serif;
+
+  .vehicle-plate-keyboard-container {
+    .confirm {
+      height: 88rpx;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: white;
+      font-size: 28rpx;
+      color: #333;
+    }
+
+    .confirm:active {
+      opacity: 0.5;
+    }
+
+    .keyboard {
+      height: 464rpx;
+      background-color: #e8e9eb;
+
+      .keyboard-container {
+        display: flex;
+        flex-direction: column;
+
+        .keyboard-row {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .keyboard-cell {
+          display: flex;
+          background-color: white;
+          border-radius: 8rpx;
+          justify-content: center;
+          align-items: center;
+
+          .cell-text {
+            font-size: 32rpx;
+            color: #333;
+          }
+        }
+
+        .keyboard-cell:active {
+          background-color: #b3b7bf;
+        }
+
+        .normal-cell {
+          width: 64rpx;
+          height: 72rpx;
+          margin: 8rpx 5rpx;
+        }
+
+        .province-cell {
+          width: 80rpx;
+          height: 88rpx;
+          margin: 10rpx 6rpx;
+        }
+
+        .character-cell {
+          width: 108rpx;
+          height: 72rpx;
+          margin: 8rpx 4rpx;
+        }
+
+        .cell-disabled {
+          opacity: 0.4;
+
+          &:active {
+            background-color: white;
+          }
+        }
+
+        .back-btn {
+          width: 74px;
+          height: 36px;
+          margin-left: 2px;
+
+          .back-btn-svg {
+            width: 24px;
+            height: 18px;
+            line-height: 18px;
+            padding-right: 6px;
+            font-size: 24px;
+          }
+        }
+      }
+    }
+  }
+}

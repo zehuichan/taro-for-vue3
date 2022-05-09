@@ -19,7 +19,7 @@ export default {
     backgroundColor: '#ffffff',
     list: [
       {
-        pagePath: 'pages/home/home',
+        pagePath: 'pages/home/index',
         text: 'home',
         iconPath: 'assets/tabs/tab-1.png',
         selectedIconPath: 'assets/tabs/tab-1-active.png'

@@ -6,6 +6,7 @@ import './assets/less/index.less'
 
 import { setupNutUI } from './plugins/nutui'
 import { setupStore } from './store'
+import { registerComponents } from './components'
 
 function bootstrap() {
   const app = createApp({
@@ -24,6 +25,7 @@ function bootstrap() {
 
   setupNutUI(app)
   setupStore(app)
+  registerComponents(app)
 
   return app
 }
