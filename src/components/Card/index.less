@@ -1,0 +1,30 @@
+.v-card {
+  border-radius: 4rpx;
+  background-color: @bg-color;
+  overflow: hidden;
+  color: @white;
+  transition: 0.3s;
+  font-size: @font14;
+
+  &.is-always-shadow {
+    box-shadow: 0 0 12rpx rgb(0 0 0 / 12%);
+  }
+
+  &.is-never-shadow {
+    box-shadow: none;
+  }
+}
+
+.v-card__header {
+  padding: 24rpx 32rpx;
+  box-sizing: border-box;
+}
+
+.v-card__body {
+  padding: 32rpx;
+}
+
+.v-card__extra,
+.v-card__footer {
+  padding: 24rpx 32rpx;
+}

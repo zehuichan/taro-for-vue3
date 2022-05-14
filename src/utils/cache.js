@@ -1,11 +1,9 @@
 import Taro from '@tarojs/taro'
 
-const prefix = import.meta.env.VITE_WECHAT_APPID
-
 class Cache {
   setItem(key, value) {
     try {
-      Taro.setStorageSync(prefix + key, JSON.stringify(value))
+      Taro.setStorageSync(key, JSON.stringify(value))
     } catch (e) {
       console.log(e)
     }
@@ -13,14 +11,26 @@ class Cache {
 
   getItem(key) {
     try {
-      return JSON.parse(Taro.getStorageSync(prefix + key))
+      return JSON.parse(Taro.getStorageSync(key))
     } catch (e) {
       return ''
     }
   }
 
   removeItem(key) {
-    return Taro.removeStorageSync(prefix + key)
+    try {
+      Taro.removeStorageSync(key)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  clear() {
+    try {
+      Taro.clearStorageSync()
+    } catch (e) {
+      console.log(e)
+    }
   }
 }
 

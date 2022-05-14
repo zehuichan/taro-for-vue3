@@ -1,6 +1,7 @@
 module.exports = {
   env: {
     NODE_ENV: '"staging"',
+    APPID: '"wx8f8f8f8f8f8f8f8f"',
     BASE_URL: '"/stage-api"'
   },
   defineConstants: {},

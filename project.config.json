@@ -1,8 +1,8 @@
 {
   "miniprogramRoot": "dist/",
-  "projectname": "taro-for-vue3",
+  "projectname": "4s-user-applet",
   "description": "项目配置文件，详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
-  "appid": "wxbfc66e30d3a672fb",
+  "appid": "testappid",
   "setting": {
     "urlCheck": true,
     "es6": false,
@@ -30,7 +30,8 @@
     },
     "disableUseStrict": false,
     "useCompilerPlugins": false,
-    "minifyWXML": false
+    "minifyWXML": false,
+    "compileHotReLoad": true
   },
   "compileType": "miniprogram",
   "libVersion": "2.24.1",

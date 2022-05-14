@@ -8,7 +8,7 @@
 import { ref } from 'vue'
 
 const value = ref('')
-const visible = ref(true)
+const visible = ref(false)
 const showKeyBoard = () => {
   visible.value = true
 }

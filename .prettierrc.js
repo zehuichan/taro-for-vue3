@@ -1,9 +1,10 @@
 module.exports = {
+  printWidth: 80,
   tabWidth: 2,
   semi: false,
   singleQuote: true,
-  trailingComma: 'none', // none | es5 | all
-  proseWrap: 'never', // always | never | <string>
-  htmlWhitespaceSensitivity: 'strict',
-  endOfLine: 'auto'
+  trailingComma: 'none',
+  proseWrap: 'never',
+  htmlWhitespaceSensitivity: 'css',
+  endOfLine: 'lf'
 }

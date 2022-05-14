@@ -4,7 +4,7 @@ module.exports = {
     'taro/vue3',
     'plugin:vue/vue3-recommended',
     'prettier',
-    'plugin:prettier/recommended',
+    'plugin:prettier/recommended'
   ],
   rules: {
     'vue/script-setup-uses-vars': 'error',
@@ -14,8 +14,8 @@ module.exports = {
       'error',
       {
         argsIgnorePattern: '^_',
-        varsIgnorePattern: '^_',
-      },
+        varsIgnorePattern: '^_'
+      }
     ],
     'space-before-function-paren': 'off',
     'vue/attributes-order': 'off',
@@ -33,12 +33,12 @@ module.exports = {
         html: {
           void: 'always',
           normal: 'never',
-          component: 'always',
+          component: 'always'
         },
         svg: 'always',
-        math: 'always',
-      },
+        math: 'always'
+      }
     ],
-    'vue/multi-word-component-names': 'off',
-  },
+    'vue/multi-word-component-names': 'off'
+  }
 }

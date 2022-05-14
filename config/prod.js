@@ -1,6 +1,7 @@
 module.exports = {
   env: {
     NODE_ENV: '"production"',
+    APPID: '"wx8f8f8f8f8f8f8f8f"',
     BASE_URL: '"/prod-api"'
   },
   defineConstants: {},

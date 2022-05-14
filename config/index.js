@@ -2,6 +2,12 @@ const path = require('path')
 const dayjs = require('dayjs')
 const pkg = require('../package.json')
 
+const outputRootPath = {
+  development: 'dev',
+  staging: 'stage',
+  production: 'build'
+}
+
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -11,11 +17,11 @@ const { name, version } = pkg
 const __APP_INFO__ = {
   name,
   version,
-  lastBuildTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+  lastBuildTime: dayjs().format('YYYY-MM-DD HH:mm:ss')
 }
 
 const config = {
-  projectName: 'taro-for-vue3',
+  projectName: 'zhongshi-taro',
   date: '2022-4-26',
   designWidth: 375,
   deviceRatio: {
@@ -25,13 +31,12 @@ const config = {
     375: 2 / 1
   },
   sourceRoot: 'src',
-  outputRoot: 'dist',
-  plugins: [
-    '@tarojs/plugin-html',
-    'taro-plugin-pinia'
-  ],
+  outputRoot: `dist/${outputRootPath[process.env.NODE_ENV] || 'dev'}/${
+    process.env.TARO_ENV
+  }`,
+  plugins: ['@tarojs/plugin-html', 'taro-plugin-pinia'],
   terser: {
-    enable: ['production', 'staging'].indexOf(process.env.NODE_ENV) > -1,
+    enable: true,
     config: {
       compress: true, // 默认使用terser压缩
       // mangle: false,
@@ -51,20 +56,16 @@ const config = {
     '@': resolve('src')
   },
   mini: {
+    // https://github.com/NervJS/taro/issues/11133
     webpackChain(chain) {
       chain.merge({
         module: {
-          rule: {
-            mjsScript: {
-              test: /\.mjs$/,
-              include: [/pinia/],
-              use: {
-                babelLoader: {
-                  loader: require.resolve('babel-loader')
-                }
-              }
+          rule: [
+            {
+              test: /.js$/,
+              loader: 'babel-loader'
             }
-          }
+          ]
         }
       })
     },
@@ -86,6 +87,9 @@ const config = {
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
+    },
+    lessLoaderOption: {
+      additionalData: `@import "~@/assets/less/var.less";`
     }
   },
   h5: {

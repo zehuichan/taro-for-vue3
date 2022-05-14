@@ -1,6 +1,9 @@
-import VehicleKeyboard from './VehicleKeyboard'
+import Block from '@/components/Block'
+import Card from '@/components/Card'
+import ToolBar from '@/components/ToolBar'
+import VehicleKeyboard from '@/components/VehicleKeyboard'
 
-const components = [VehicleKeyboard]
+const components = [Block, Card, ToolBar, VehicleKeyboard]
 
 export function registerComponents(app) {
   components.map((item) => {
