@@ -1,6 +1,5 @@
 import Taro from '@tarojs/taro'
-import { ref, shallowRef, unref } from 'vue'
-import { watchPausable } from '@/hooks'
+import { ref, shallowRef, unref, watch } from 'vue'
 import { guessSerializerType } from './guess'
 
 export const StorageSerializers = {
@@ -45,7 +44,7 @@ export default function useStorage(key, initialValue, options = {}) {
   const type = guessSerializerType(rawInit)
   const serializer = StorageSerializers[type]
 
-  const { pause, resume } = watchPausable(data, () => write(data.value), {
+  watch(data, () => write(data.value), {
     flush,
     deep
   })
@@ -69,8 +68,6 @@ export default function useStorage(key, initialValue, options = {}) {
   function read(event) {
     if (event && event.key !== key) return
 
-    pause()
-
     try {
       const rawValue = event ? event.newValue : Taro.getStorageSync(key)
       if (rawValue == null) {
@@ -85,8 +82,6 @@ export default function useStorage(key, initialValue, options = {}) {
       }
     } catch (e) {
       console.log('read', e)
-    } finally {
-      resume()
     }
   }
 
