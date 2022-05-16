@@ -51,8 +51,6 @@ export default function useStorage(key, initialValue, options = {}) {
 
   update()
 
-  return data
-
   function write(v) {
     try {
       if (v == null) {
@@ -61,7 +59,7 @@ export default function useStorage(key, initialValue, options = {}) {
         Taro.setStorageSync(key, serializer.write(v))
       }
     } catch (e) {
-      console.log('write', e)
+      console.error('write', e)
     }
   }
 
@@ -81,7 +79,7 @@ export default function useStorage(key, initialValue, options = {}) {
         return serializer.read(rawValue)
       }
     } catch (e) {
-      console.log('read', e)
+      console.error('read', e)
     }
   }
 
@@ -91,4 +89,6 @@ export default function useStorage(key, initialValue, options = {}) {
     }
     data.value = read(event)
   }
+
+  return data
 }
