@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro'
-import { ref, shallowRef, unref, watch } from 'vue'
+import { ref, shallowRef, unref } from 'vue'
 import { guessSerializerType } from './guess'
+import { watchPausable } from '@/hooks'
 
 export const StorageSerializers = {
   boolean: {
@@ -38,18 +39,30 @@ export const StorageSerializers = {
 }
 
 export default function useStorage(key, initialValue, options = {}) {
-  const { flush = 'pre', deep = true, writeDefaults = true, shallow } = options
+  const {
+    flush = 'pre',
+    deep = true,
+    writeDefaults = true,
+    shallow,
+    eventFilter,
+    onError = (e) => {
+      console.error(e)
+    }
+  } = options
   const data = (shallow ? shallowRef : ref)(initialValue)
   const rawInit = unref(initialValue)
   const type = guessSerializerType(rawInit)
   const serializer = StorageSerializers[type]
 
-  watch(data, () => write(data.value), {
+  const { pause, resume } = watchPausable(data, () => write(data.value), {
     flush,
-    deep
+    deep,
+    eventFilter
   })
 
   update()
+
+  return data
 
   function write(v) {
     try {
@@ -59,16 +72,20 @@ export default function useStorage(key, initialValue, options = {}) {
         Taro.setStorageSync(key, serializer.write(v))
       }
     } catch (e) {
-      console.error('write', e)
+      onError(e)
     }
   }
 
   function read(event) {
-    if (event && event.key !== key) return
+    if (event && event.key !== key) {
+      return
+    }
+
+    pause()
 
     try {
       const rawValue = event ? event.newValue : Taro.getStorageSync(key)
-      if (rawValue == null) {
+      if (rawValue == null || rawValue == '') {
         if (writeDefaults && rawInit !== null) {
           Taro.setStorageSync(key, serializer.write(rawInit))
         }
@@ -79,7 +96,9 @@ export default function useStorage(key, initialValue, options = {}) {
         return serializer.read(rawValue)
       }
     } catch (e) {
-      console.error('read', e)
+      onError(e)
+    } finally {
+      resume()
     }
   }
 
@@ -87,8 +106,7 @@ export default function useStorage(key, initialValue, options = {}) {
     if (event && event.key !== key) {
       return
     }
+
     data.value = read(event)
   }
-
-  return data
 }
