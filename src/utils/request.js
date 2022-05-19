@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 // utils
-import cache from '@/utils/cache'
+import { getToken } from '@/utils/auth'
 
 // 格式化url，返回形参
 const formatUrl = (url = '', json) => {
@@ -18,13 +18,12 @@ const interceptor = (chain) => {
   // let each request carry token
   // ['X-Token'] is a custom headers key
   // please modify it according to the actual situation
-  const token = cache.getItem('token')
+  const token = getToken()
 
   if (token) {
-    config.header = {
-      ...config.header,
+    config.header = Object.assign(config.header, {
       Authorization: token
-    }
+    })
   }
 
   return chain.proceed(config).then((res) => {
@@ -42,11 +41,11 @@ const http = (options) => {
       ...(options || {}),
       url: process.env.BASE_URL + options.url,
       timeout: options.timeout || TIMEOUT,
-      success(response) {
+      success: (response) => {
         const res = response.data
         resolve(res)
       },
-      fail(error) {
+      fail: (error) => {
         console.log('error', error)
         reject(error)
       }

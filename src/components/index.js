@@ -1,9 +1,7 @@
-import Block from '@/components/Block'
 import Card from '@/components/Card'
 import ToolBar from '@/components/ToolBar'
-import VehicleKeyboard from '@/components/VehicleKeyboard'
 
-const components = [Block, Card, ToolBar, VehicleKeyboard]
+const components = [Card, ToolBar]
 
 export function registerComponents(app) {
   components.map((item) => {
