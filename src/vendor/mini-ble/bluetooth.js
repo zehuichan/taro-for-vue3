@@ -17,8 +17,6 @@ export default class Bluetooth {
     this.isAvailableAdapter = false
     // 初始化蓝牙适配器
     this.openAndListenBluetoothAdapter()
-      .then((_) => _)
-      .catch((_) => _)
     // 扫描到的设备
     this.scanDevices = []
   }
@@ -30,7 +28,7 @@ export default class Bluetooth {
    */
   openAndListenBluetoothAdapter() {
     if (!this.isInitializedAdapter) {
-      Taro.offBluetoothAdapterStateChange().then().catch()
+      Taro.offBluetoothAdapterStateChange()
       Taro.onBluetoothAdapterStateChange((res) => {
         this.bm.log('onBluetoothAdapterStateChange', res)
         if (res.available && !this.isAvailableAdapter) {
