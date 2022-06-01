@@ -1,0 +1,94 @@
+@segmented-bg: fade(#000, 4%);
+@segmented-hover-bg: fade(#000, 6%);
+@segmented-selected-bg: #fff;
+@segmented-label-color: fade(#000, 65%);
+@segmented-label-hover-color: #262626;
+@segmented-disabled-color: fade(#000, 25%);
+
+.v-segmented {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 28rpx;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  font-feature-settings: 'tnum';
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  justify-items: flex-start;
+  color: @segmented-label-color;
+  background-color: @segmented-bg;
+  border-radius: 6rpx;
+  box-shadow: 0 0 0 4rpx @segmented-bg;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  // hover/focus styles
+  &:not(&-disabled) {
+    &:hover,
+    &:focus {
+      background-color: @segmented-hover-bg;
+      box-shadow: 0 0 0 4rpx @segmented-hover-bg;
+    }
+  }
+
+  // block styles
+  &&-block {
+    display: flex;
+  }
+
+  &&-block &-item {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &-item {
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+
+    &-selected {
+      background-color: @segmented-selected-bg;
+      border-radius: 2px;
+      box-shadow: 0 2px 8px -2px fade(#000, 5%), 0 1px 4px -1px fade(#000, 7%),
+        0 0 1px fade(#000, 8%);
+      color: @segmented-label-hover-color;
+    }
+
+    &:hover,
+    &:focus {
+      color: @segmented-label-hover-color;
+    }
+
+    &-label {
+      min-height: 56rpx;
+      padding: 0 22rpx;
+      line-height: 56rpx;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      word-break: keep-all;
+    }
+  }
+
+  // size styles
+  &&-lg &-item-label {
+    min-height: 72rpx;
+    padding: 0 11rpx;
+    font-size: 32rpx;
+    line-height: 72rpx;
+  }
+
+  &&-sm &-item-label {
+    min-height: 40rpx;
+    padding: 0 14rpx;
+    line-height: 40rpx;
+  }
+
+  &-disabled &-item,
+  &-item-disabled {
+    color: @segmented-disabled-color;
+    cursor: not-allowed;
+  }
+}

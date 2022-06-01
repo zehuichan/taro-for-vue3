@@ -1,7 +1,8 @@
 import Card from '@/components/Card'
+import Segmented from '@/components/Segmented'
 import ToolBar from '@/components/ToolBar'
 
-const components = [Card, ToolBar]
+const components = [Card, Segmented, ToolBar]
 
 export function registerComponents(app) {
   components.map((item) => {

@@ -16,39 +16,35 @@ export default defineComponent({
     bodyStyle: {
       type: Object,
       default: () => ({})
-    },
-    shadow: String
+    }
   },
   setup(props, { slots }) {
     // eslint-disable-next-line vue/no-setup-props-destructure
-    const { header, headerStyle, bodyStyle, shadow } = props
-
-    const cn = computed(() => {
-      return {
-        [name]: true,
-        [shadow ? `is-${shadow}-shadow` : 'is-always-shadow']: true
-      }
-    })
+    const { header, headerStyle, bodyStyle } = props
 
     const renderHeader = () => {
-      if (slots.header) {
-        return slots.header()
-      }
-      if (header) {
+      if (slots.header || header) {
         return (
-          <view class="v-card__header" style={headerStyle}>
-            {slots.header()}
+          <view class="v-card--header" style={{ ...headerStyle }}>
+            {slots.header ? slots.header() : header}
           </view>
         )
       }
     }
 
-    return () => (
-      <view class={cn.value}>
-        {renderHeader()}
-        <view class="v-card__body" style={bodyStyle}>
+    const bStyle = computed(() => ({ ...bodyStyle }))
+    const renderBody = () => {
+      return (
+        <view class="v-card--body" style={bStyle.value}>
           {slots?.default()}
         </view>
+      )
+    }
+
+    return () => (
+      <view class={name}>
+        {renderHeader()}
+        {renderBody()}
       </view>
     )
   }
