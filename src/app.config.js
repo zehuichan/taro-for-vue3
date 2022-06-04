@@ -1,5 +1,5 @@
 export default {
-  pages: ['pages/bluetooth/index', 'pages/about/index'],
+  pages: ['pages/home/index', 'pages/about/index'],
   subPackages: [
     {
       root: 'pages/account',

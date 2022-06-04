@@ -1,0 +1,54 @@
+@cell-text-color: #fff;
+@cell-value-color: #fff;
+
+// todo cell样式优化
+.v-cell {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20rpx 32rpx;
+  overflow: hidden;
+  color: @cell-text-color;
+  font-size: 28rpx;
+  line-height: 48rpx;
+
+  &::after {
+    position: absolute;
+    box-sizing: border-box;
+    content: ' ';
+    pointer-events: none;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-bottom: 1rpx solid fade(#fff, 20%);
+  }
+
+  &:last-child::after,
+  &--borderless::after {
+    display: none;
+  }
+
+  &__title,
+  &__value {
+    flex: 1;
+  }
+
+  &__value {
+    position: relative;
+    overflow: hidden;
+    color: @cell-value-color;
+    text-align: right;
+    vertical-align: middle;
+    word-wrap: break-word;
+
+    &--alone {
+      color: @cell-text-color;
+      text-align: left;
+    }
+  }
+
+  &--center {
+    align-items: center;
+  }
+}

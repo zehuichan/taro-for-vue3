@@ -1,11 +1,6 @@
 module.exports = {
   root: true,
-  extends: [
-    'taro/vue3',
-    'plugin:vue/vue3-recommended',
-    'prettier',
-    'plugin:prettier/recommended'
-  ],
+  extends: ['taro/vue3', 'plugin:vue/vue3-recommended', 'prettier'],
   rules: {
     'vue/script-setup-uses-vars': 'error',
     'vue/custom-event-name-casing': 'off',
@@ -27,6 +22,7 @@ module.exports = {
     'vue/attribute-hyphenation': 'off',
     'vue/require-default-prop': 'off',
     'vue/require-explicit-emits': 'off',
+    'vue/no-setup-props-destructure': 'off',
     'vue/html-self-closing': [
       'error',
       {
