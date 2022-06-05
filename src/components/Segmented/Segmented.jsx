@@ -1,5 +1,10 @@
 import { defineComponent, ref, watch } from 'vue'
-import { createNamespace, makeNumericProp, makeStringProp } from '../utils'
+import {
+  createNamespace,
+  makeArrayProp,
+  makeNumericProp,
+  makeStringProp
+} from '../utils'
 
 const [name] = createNamespace('segmented')
 
@@ -9,11 +14,7 @@ export default defineComponent({
   name,
   props: {
     modelValue: makeNumericProp(''),
-    columns: {
-      type: Array,
-      default: () => [],
-      required: true
-    },
+    columns: makeArrayProp(),
     columnsFieldNames: {
       type: Object,
       default: () => ({ text: 'text', value: 'value' })

@@ -19,7 +19,6 @@ export default defineComponent({
     }
   },
   setup(props, { slots }) {
-    // eslint-disable-next-line vue/no-setup-props-destructure
     const { header, headerStyle, bodyStyle } = props
 
     const renderHeader = () => {
