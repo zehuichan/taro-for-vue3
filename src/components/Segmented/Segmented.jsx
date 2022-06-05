@@ -1,5 +1,5 @@
 import { defineComponent, ref, watch } from 'vue'
-import { createNamespace } from '../utils'
+import { createNamespace, makeNumericProp, makeStringProp } from '../utils'
 
 const [name] = createNamespace('segmented')
 
@@ -8,10 +8,7 @@ import './index.less'
 export default defineComponent({
   name,
   props: {
-    modelValue: {
-      type: [String, Number],
-      default: ''
-    },
+    modelValue: makeNumericProp(''),
     columns: {
       type: Array,
       default: () => [],
@@ -21,18 +18,9 @@ export default defineComponent({
       type: Object,
       default: () => ({ text: 'text', value: 'value' })
     },
-    block: {
-      type: Boolean,
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    size: {
-      type: String,
-      default: 'middle'
-    }
+    block: Boolean,
+    disabled: Boolean,
+    size: makeStringProp('middle')
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { slots, emit }) {

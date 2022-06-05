@@ -1,5 +1,5 @@
 import { computed, defineComponent } from 'vue'
-import { createNamespace } from '../utils'
+import { createNamespace, truthProp } from '../utils'
 
 const [name] = createNamespace('cell')
 
@@ -11,10 +11,7 @@ export default defineComponent({
     title: String,
     value: String,
     center: Boolean,
-    border: {
-      type: Boolean,
-      default: true
-    }
+    border: truthProp
   },
   setup(props, { slots }) {
     const { title, value, center, border } = props

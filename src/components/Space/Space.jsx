@@ -1,5 +1,5 @@
 import { computed, defineComponent } from 'vue'
-import { createNamespace, isArray, isNumber } from '../utils'
+import { createNamespace, isArray, isNumber, makeStringProp } from '../utils'
 
 const [name] = createNamespace('space')
 
@@ -9,21 +9,13 @@ export default defineComponent({
   name,
   props: {
     align: String,
-    direction: {
-      type: String,
-      default: 'horizontal'
-    },
+    direction: makeStringProp('horizontal'),
     size: {
       type: [Number, String, Array],
       default: 'small'
     },
-    wrap: {
-      type: Boolean,
-      default: false
-    },
-    fill: {
-      type: Boolean
-    }
+    wrap: Boolean,
+    fill: Boolean
   },
   setup(props, { slots }) {
     const mergedAlign = computed(
