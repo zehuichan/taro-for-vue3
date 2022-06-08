@@ -1,3 +1,5 @@
+export { default as useMessage } from './useMessage'
+export { default as useNavigator } from './useNavigator'
 export { default as useRect } from './useRect'
 export { default as useStorage } from './useStorage'
 export { default as watchPausable } from './watchPausable'

@@ -180,9 +180,14 @@ root:.
     │
     ├─hooks # 一些vue3的钩子
     │      index.js
-    │      useStorage.js
+    │      useStorage
+    │      watchPausable
+    │      watchWithFilter
     │
     ├─components # 公共组件
+    │      index.js
+    │
+    ├─dict # 前端字典
     │      index.js
     │
     ├─pages # 页面
@@ -204,7 +209,7 @@ root:.
     │          index.vue
     │
     ├─plugins
-    │      nutui.js # 本仓库启用全局引用 nutui UI库
+    │      nutui/index.js # 本仓库启用全局引用 nutui UI库
     │
     ├─store # pinia
     │  │  index.js

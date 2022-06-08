@@ -62,7 +62,12 @@ const config = {
         module: {
           rule: [
             {
-              test: /.js$/,
+              test: /\.mjs$/,
+              include: [/pinia/],
+              loader: 'babel-loader'
+            },
+            {
+              test: /\.js$/,
               loader: 'babel-loader'
             }
           ]

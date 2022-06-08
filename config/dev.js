@@ -1,8 +1,8 @@
 module.exports = {
   env: {
     NODE_ENV: '"development"',
-    APPID: '"wx8f8f8f8f8f8f8f8f"',
-    BASE_URL: '"/dev-api"'
+    APPID: '"2021001168672790"',
+    BASE_URL: '"https://4s-dev.gdzskj.tech/131/scg"'
   },
   defineConstants: {},
   mini: {},

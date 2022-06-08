@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { store } from '../index'
+import { store } from '@/store'
 
 export const useAppStore = defineStore({
   id: 'app',
@@ -15,6 +15,6 @@ export const useAppStore = defineStore({
   }
 })
 
-export function useAppStoreWithInstall() {
+export function useAppStoreWithOut() {
   return useAppStore(store)
 }
