@@ -52,36 +52,47 @@ const firstPage = [
 ]
 
 const secondPage = [
-  ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
-  [
-    'Q',
-    'W',
-    'E',
-    'R',
-    'T',
-    'Y',
-    'U',
-    'I',
-    'O',
-    'P',
-    'A',
-    'S',
-    'D',
-    'F',
-    'G',
-    'H',
-    'J',
-    'K',
-    'L',
-    'Z',
-    'X',
-    'C',
-    'V',
-    'B',
-    'N',
-    'M'
-  ],
-  ['港', '澳', '学', '警', '领']
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  '0',
+  'Q',
+  'W',
+  'E',
+  'R',
+  'T',
+  'Y',
+  'U',
+  'I',
+  'O',
+  'P',
+  'A',
+  'S',
+  'D',
+  'F',
+  'G',
+  'H',
+  'J',
+  'K',
+  'L',
+  'Z',
+  'X',
+  'C',
+  'V',
+  'B',
+  'N',
+  'M',
+  '港',
+  '澳',
+  '学',
+  '警',
+  '领'
 ]
 
 const smallVehicleNewEnergy = '0123456789'
@@ -138,40 +149,19 @@ export default defineComponent({
   emits: ['input', 'close', 'delete', 'update:modelValue', 'update:visible'],
   setup(props, { emit }) {
     const genFirstPageKeys = () =>
-      firstPage.map((key) => {
-        return <PlateKeyboardKey text={key} type="province" onPress={onPress} />
-      })
+      firstPage.map((key) => (
+        <PlateKeyboardKey text={key} type="province" onPress={onPress} />
+      ))
 
     const genSecondPageKeys = (type = SecondPageStatus.AllowAll) =>
-      secondPage[0]
-        .map((key) => (
-          <PlateKeyboardKey
-            text={key}
-            type="normal"
-            disabled={!onlyAllowInput(key, type)}
-            onPress={onPress}
-          />
-        ))
-        .concat(
-          secondPage[1].map((key) => (
-            <PlateKeyboardKey
-              text={key}
-              type="normal"
-              disabled={!onlyAllowInput(key, type)}
-              onPress={onPress}
-            />
-          ))
-        )
-        .concat(
-          secondPage[2].map((key) => (
-            <PlateKeyboardKey
-              text={key}
-              type="normal"
-              disabled={!onlyAllowInput(key, type)}
-              onPress={onPress}
-            />
-          ))
-        )
+      secondPage.map((key) => (
+        <PlateKeyboardKey
+          text={key}
+          type="normal"
+          disabled={!onlyAllowInput(key, type)}
+          onPress={onPress}
+        />
+      ))
 
     const renderKeys = () => {
       switch (props.modelValue.length) {
