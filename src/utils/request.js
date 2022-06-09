@@ -24,8 +24,7 @@ const interceptor = (chain) => {
   const token = cache.getItem(TOKEN_KEY)
 
   config.header = {
-    'app-code': process.env.APPID,
-    'app-auth-token': 123123123
+    'app-code': process.env.APPID
   }
 
   if (token) {

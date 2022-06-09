@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-import { defineComponent, reactive } from 'vue'
+import { defineComponent, ref } from 'vue'
 import {
   createNamespace,
   getSizeStyle,
@@ -14,6 +14,9 @@ const [name] = createNamespace('uploader')
 import './index.less'
 
 import { isOversize } from './utils'
+
+// api
+import { uploadFile } from '@/api/oss'
 
 export default defineComponent({
   name,
@@ -34,6 +37,8 @@ export default defineComponent({
   },
   emits: ['update:modelValue', 'delete', 'oversize'],
   setup(props, { emit, slots }) {
+    const files = ref(props.modelValue.slice(0))
+
     const previewImage = async (item) => {
       const fileList = props.modelValue.slice(0)
       await Taro.previewImage({
@@ -58,7 +63,7 @@ export default defineComponent({
             style={getSizeStyle(props.previewSize)}
             onClick={() => previewImage(item)}
           >
-            <image src={item} mode={props.imageMode} />
+            <image v-src={item} mode={props.imageMode} />
           </view>
           {props.deletable && (
             <view
@@ -84,39 +89,39 @@ export default defineComponent({
       }
     }
 
-    const readFile = (files) => {
-      const { maxCount, modelValue, maxSize } = props
-
-      const remainCount = +maxCount - modelValue.length
-
-      if (files.length > remainCount) {
-        files = files.slice(0, remainCount)
-      }
-
-      if (isOversize(files, maxSize)) {
-        emit('oversize', files)
-
-        if (!files.length) {
-          return
-        }
-      }
-      // todo oss上传
-      files = reactive(files.map((item) => item.path))
-      emit('update:modelValue', [...props.modelValue, ...files])
-    }
-
     const onClickUpload = async () => {
       try {
-        const { tempFiles } = await Taro.chooseImage({
-          count: 1,
-          sizeType: ['original', 'compressed'],
-          sourceType: ['album', 'camera']
-        })
+        const { tempFiles, tempFilePaths, apFilePaths } =
+          await Taro.chooseImage({
+            count: 1,
+            sizeType: ['original', 'compressed'],
+            sourceType: ['album', 'camera']
+          })
 
-        if (props.disabled || !tempFiles || !tempFiles.length) {
+        const { maxCount, modelValue, maxSize, disabled } = props
+
+        if (disabled || !tempFiles || !tempFiles.length) {
           return
         }
-        readFile(tempFiles)
+
+        const remainCount = +maxCount - modelValue.length
+
+        if (files.value.length > remainCount) {
+          files.value = tempFiles.slice(0, remainCount)
+        }
+
+        if (isOversize(files.value, maxSize)) {
+          emit('oversize', files.value)
+
+          if (!files.value.length) {
+            return
+          }
+        }
+
+        const filePath =
+          Taro.getEnv() === 'WEAPP' ? tempFilePaths[0] : apFilePaths[0]
+        const res = await uploadFile(filePath)
+        emit('update:modelValue', [...props.modelValue, res])
       } catch (e) {
         console.log(e)
       }

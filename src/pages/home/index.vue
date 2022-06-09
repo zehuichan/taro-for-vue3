@@ -1,23 +1,11 @@
 <template>
-  <v-uploader v-model="files" />
-  <v-plate-input
-    gutter="30"
-    :value="value"
-    :focused="showKeyboard"
-    @focus="showKeyboard = true"
-  />
-  <v-plate-keyboard v-model="value" v-model:visible="showKeyboard" />
+  <v-uploader v-model="files" max-count="3" />
 </template>
 
 <script setup>
 import { ref } from 'vue'
 
-const files = ref([
-  'https://fastly.jsdelivr.net/npm/@vant/assets/leaf.jpeg',
-  'https://fastly.jsdelivr.net/npm/@vant/assets/leaf.jpeg'
-])
-const value = ref('')
-const showKeyboard = ref(true)
+const files = ref([])
 </script>
 
 <style>

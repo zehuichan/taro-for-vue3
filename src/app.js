@@ -6,6 +6,7 @@ import './assets/less/index.less'
 
 import { setupNutUI } from './plugins/nutui'
 import { setupStore } from './store'
+import { setupGlobDirectives } from './directives'
 import { registerComponents } from './components'
 
 function bootstrap() {
@@ -25,6 +26,7 @@ function bootstrap() {
 
   setupNutUI(app)
   setupStore(app)
+  setupGlobDirectives(app)
   registerComponents(app)
 
   return app
