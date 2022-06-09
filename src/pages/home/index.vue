@@ -6,7 +6,7 @@
     :focused="showKeyboard"
     @focus="showKeyboard = true"
   />
-  <v-plate-keyboard v-model:visible="showKeyboard" />
+  <v-plate-keyboard v-model="value" v-model:visible="showKeyboard" />
 </template>
 
 <script setup>
@@ -16,8 +16,8 @@ const files = ref([
   'https://fastly.jsdelivr.net/npm/@vant/assets/leaf.jpeg',
   'https://fastly.jsdelivr.net/npm/@vant/assets/leaf.jpeg'
 ])
-const value = ref('1234568')
-const showKeyboard = ref(false)
+const value = ref('')
+const showKeyboard = ref(true)
 </script>
 
 <style>

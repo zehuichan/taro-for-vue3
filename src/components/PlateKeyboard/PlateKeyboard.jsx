@@ -3,6 +3,9 @@ import { createNamespace, makeStringProp, truthProp } from '../utils'
 
 const [name] = createNamespace('plate-keyboard')
 
+// Components
+import PlateKeyboardKey from './PlateKeyboardKey'
+
 import './index.less'
 
 const SecondPageStatus = {
@@ -14,17 +17,70 @@ const SecondPageStatus = {
 }
 
 const firstPage = [
-  ['京', '沪', '粤', '津', '冀', '晋', '蒙', '辽'],
-  ['吉', '黑', '苏', '浙', '皖', '闽', '赣', '鲁'],
-  ['豫', '鄂', '湘', '桂', '琼', '渝', '川', '贵'],
-  ['云', '藏', '陕', '甘', '青', '宁', '新', '使']
+  '京',
+  '沪',
+  '粤',
+  '津',
+  '冀',
+  '晋',
+  '蒙',
+  '辽',
+  '吉',
+  '黑',
+  '苏',
+  '浙',
+  '皖',
+  '闽',
+  '赣',
+  '鲁',
+  '豫',
+  '鄂',
+  '湘',
+  '桂',
+  '琼',
+  '渝',
+  '川',
+  '贵',
+  '云',
+  '藏',
+  '陕',
+  '甘',
+  '青',
+  '宁',
+  '新',
+  '使'
 ]
 
 const secondPage = [
   ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
-  ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
-  ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
-  ['Z', 'X', 'C', 'V', 'B', 'N', 'M'],
+  [
+    'Q',
+    'W',
+    'E',
+    'R',
+    'T',
+    'Y',
+    'U',
+    'I',
+    'O',
+    'P',
+    'A',
+    'S',
+    'D',
+    'F',
+    'G',
+    'H',
+    'J',
+    'K',
+    'L',
+    'Z',
+    'X',
+    'C',
+    'V',
+    'B',
+    'N',
+    'M'
+  ],
   ['港', '澳', '学', '警', '领']
 ]
 
@@ -70,8 +126,6 @@ const onlyAllowInput = (s, onlyAllows) => {
   }
 }
 
-console.log(firstPage, secondPage, isNewEnergyPlate, onlyAllowInput)
-
 export default defineComponent({
   name,
   props: {
@@ -81,18 +135,92 @@ export default defineComponent({
     blurOnClose: truthProp,
     randomKeyOrder: Boolean
   },
-  emits: [
-    'blur',
-    'input',
-    'close',
-    'delete',
-    'update:modelValue',
-    'update:visible'
-  ],
+  emits: ['input', 'close', 'delete', 'update:modelValue', 'update:visible'],
   setup(props, { emit }) {
+    const genFirstPageKeys = () =>
+      firstPage.map((key) => {
+        return <PlateKeyboardKey text={key} type="province" onPress={onPress} />
+      })
+
+    const genSecondPageKeys = (type = SecondPageStatus.AllowAll) =>
+      secondPage[0]
+        .map((key) => (
+          <PlateKeyboardKey
+            text={key}
+            type="normal"
+            disabled={!onlyAllowInput(key, type)}
+            onPress={onPress}
+          />
+        ))
+        .concat(
+          secondPage[1].map((key) => (
+            <PlateKeyboardKey
+              text={key}
+              type="normal"
+              disabled={!onlyAllowInput(key, type)}
+              onPress={onPress}
+            />
+          ))
+        )
+        .concat(
+          secondPage[2].map((key) => (
+            <PlateKeyboardKey
+              text={key}
+              type="normal"
+              disabled={!onlyAllowInput(key, type)}
+              onPress={onPress}
+            />
+          ))
+        )
+
+    const renderKeys = () => {
+      switch (props.modelValue.length) {
+        case 0:
+          return genFirstPageKeys()
+        case 1:
+          return genSecondPageKeys(SecondPageStatus.AlphabetOnly)
+        case 2:
+          return genSecondPageKeys()
+        case 3:
+          return genSecondPageKeys()
+        case 4:
+          return genSecondPageKeys()
+        case 5:
+          return genSecondPageKeys()
+        case 6:
+          return genSecondPageKeys(SecondPageStatus.AllowSpecialCharaters)
+        case 7:
+          const newEnergyVehicleLastNumber = isNewEnergyPlate(props.modelValue)
+          if (
+            isSpecialCharacters(props.modelValue.slice(-1)) ||
+            newEnergyVehicleLastNumber === false
+          ) {
+            return genSecondPageKeys(SecondPageStatus.DisableAll)
+          }
+          return genSecondPageKeys(newEnergyVehicleLastNumber)
+        default:
+          return genSecondPageKeys(SecondPageStatus.DisableAll)
+      }
+    }
+
+    const renderDeleteKey = () => (
+      <PlateKeyboardKey text="X" type="delete" onPress={onPress} />
+    )
+
     const close = () => {
       emit('close')
       emit('update:visible', false)
+    }
+
+    const onPress = (text, type) => {
+      const value = props.modelValue
+      if (type === 'delete') {
+        emit('delete')
+        emit('update:modelValue', value.slice(0, value.length - 1))
+      } else {
+        emit('input', text)
+        emit('update:modelValue', value + text)
+      }
     }
 
     return () => (
@@ -103,7 +231,10 @@ export default defineComponent({
         onClickOverlay={close}
       >
         <view class={name}>
-          <view class={{ [`${name}__body`]: true }}></view>
+          <view class={{ [`${name}__body`]: true }}>
+            {renderKeys()}
+            {renderDeleteKey()}
+          </view>
         </view>
       </nut-popup>
     )
