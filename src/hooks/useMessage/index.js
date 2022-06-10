@@ -21,8 +21,9 @@ function hideLoading() {
   Taro.hideLoading()
 }
 
-function showModal(content) {
+function showModal(content, title) {
   return Taro.showModal({
+    title: title,
     content: content,
     confirmColor: '#1677FF',
     cancelColor: '#999999'

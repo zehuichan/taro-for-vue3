@@ -5,6 +5,7 @@ import { createApp } from 'vue'
 import './assets/less/index.less'
 
 import { setupNutUI } from './plugins/nutui'
+import { setupDict } from './plugins/dict'
 import { setupStore } from './store'
 import { setupGlobDirectives } from './directives'
 import { registerComponents } from './components'
@@ -25,6 +26,7 @@ function bootstrap() {
   })
 
   setupNutUI(app)
+  setupDict(app)
   setupStore(app)
   setupGlobDirectives(app)
   registerComponents(app)
