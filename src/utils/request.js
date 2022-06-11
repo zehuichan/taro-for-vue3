@@ -24,6 +24,7 @@ const interceptor = (chain) => {
   const token = cache.getItem(TOKEN_KEY)
 
   config.header = {
+    ...config.header,
     'app-code': process.env.APPID
   }
 
@@ -42,7 +43,7 @@ const interceptor = (chain) => {
       if (res.errcode !== 0) {
         showToast(res.errmsg)
       }
-      return res
+      return Promise.resolve(res)
     })
     .catch(async (error) => {
       console.log(2, error)
@@ -84,7 +85,7 @@ const interceptor = (chain) => {
       } else {
         showToast(errMessage)
       }
-      return error
+      return Promise.reject(error)
     })
 }
 

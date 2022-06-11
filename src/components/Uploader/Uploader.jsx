@@ -13,7 +13,7 @@ const [name] = createNamespace('uploader')
 
 import './index.less'
 
-import { isOversize } from './utils'
+import { isOversize, filterFiles } from './utils'
 
 // api
 import { uploadFile } from '@/api/oss'
@@ -27,6 +27,7 @@ export default defineComponent({
     deletable: truthProp,
     imageMode: makeStringProp('scaleToFill'),
     maxCount: makeNumericProp(9),
+    afterRead: Function,
     showUpload: truthProp,
     previewSize: [Number, String, Array],
     previewImage: truthProp,
@@ -39,40 +40,46 @@ export default defineComponent({
   setup(props, { emit, slots }) {
     const urls = []
 
-    const onClickUpload = async () => {
-      const { maxCount, modelValue, maxSize, disabled } = props
+    const onAfterRead = async (items) => {
+      if (isOversize(items, props.maxSize)) {
+        const result = filterFiles(items, props.maxSize)
+        items = result.valid
+        emit('oversize', result.invalid)
+        if (!items.length) {
+          return
+        }
+      }
+      const filePath = items.map((item) => item.path)
+      const res = await uploadFile(filePath[0])
+      emit('update:modelValue', [...props.modelValue, res])
 
-      if (disabled) {
+      if (props.afterRead) {
+        props.afterRead(items)
+      }
+    }
+
+    const onChange = ({ tempFiles }) => {
+      const { maxCount, modelValue } = props
+      const remainCount = +maxCount - modelValue.length
+
+      if (tempFiles.length > remainCount) {
+        tempFiles = tempFiles.slice(0, remainCount)
+      }
+
+      onAfterRead(tempFiles)
+    }
+
+    const onClickUpload = () => {
+      if (props.disabled) {
         return
       }
 
-      try {
-        let { tempFiles, tempFilePaths } = await Taro.chooseImage({
-          count: 1,
-          sizeType: ['original', 'compressed'],
-          sourceType: ['album', 'camera']
-        })
-
-        const remainCount = +maxCount - modelValue.length
-
-        if (tempFiles > remainCount) {
-          tempFiles = tempFiles.slice(0, remainCount)
-        }
-
-        if (isOversize(tempFiles, maxSize)) {
-          emit('oversize', ...tempFiles)
-
-          if (!tempFiles.length) {
-            return
-          }
-        }
-
-        const filePath = tempFilePaths[0]
-        const res = await uploadFile(filePath)
-        emit('update:modelValue', [...props.modelValue, res])
-      } catch (e) {
-        console.log(e)
-      }
+      Taro.chooseImage({
+        count: 1,
+        sizeType: ['original', 'compressed'],
+        sourceType: ['album', 'camera'],
+        success: onChange
+      })
     }
 
     // todo 前端拼接url地址
