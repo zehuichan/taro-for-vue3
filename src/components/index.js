@@ -1,5 +1,6 @@
 import Card from '@/components/Card'
 import Cell from '@/components/Cell'
+import Datepicker from '@/components/Datepicker'
 import PlateInput from '@/components/PlateInput'
 import PlateKeyboard from '@/components/PlateKeyboard'
 import Segmented from '@/components/Segmented'
@@ -10,6 +11,7 @@ import Uploader from '@/components/Uploader'
 const components = [
   Card,
   Cell,
+  Datepicker,
   PlateInput,
   PlateKeyboard,
   Segmented,
