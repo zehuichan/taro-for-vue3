@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import {
   createNamespace,
   getSizeStyle,
@@ -37,13 +37,49 @@ export default defineComponent({
   },
   emits: ['update:modelValue', 'delete', 'oversize'],
   setup(props, { emit, slots }) {
-    const files = ref(props.modelValue.slice(0))
+    const urls = []
 
+    const onClickUpload = async () => {
+      const { maxCount, modelValue, maxSize, disabled } = props
+
+      if (disabled) {
+        return
+      }
+
+      try {
+        let { tempFiles, tempFilePaths } = await Taro.chooseImage({
+          count: 1,
+          sizeType: ['original', 'compressed'],
+          sourceType: ['album', 'camera']
+        })
+
+        const remainCount = +maxCount - modelValue.length
+
+        if (tempFiles > remainCount) {
+          tempFiles = tempFiles.slice(0, remainCount)
+        }
+
+        if (isOversize(tempFiles, maxSize)) {
+          emit('oversize', ...tempFiles)
+
+          if (!tempFiles.length) {
+            return
+          }
+        }
+
+        const filePath = tempFilePaths[0]
+        const res = await uploadFile(filePath)
+        emit('update:modelValue', [...props.modelValue, res])
+      } catch (e) {
+        console.log(e)
+      }
+    }
+
+    // todo 前端拼接url地址
     const previewImage = async (item) => {
-      const fileList = props.modelValue.slice(0)
       await Taro.previewImage({
-        current: item,
-        urls: fileList
+        current: process.env.BASE_URL + item,
+        urls: urls
       })
     }
 
@@ -56,6 +92,8 @@ export default defineComponent({
     }
 
     const renderPreviewItem = (item, index) => {
+      urls.push(process.env.BASE_URL + item)
+
       return (
         <view class={{ [`${name}__preview`]: true }} key={index}>
           <view
@@ -86,44 +124,6 @@ export default defineComponent({
     const renderPreviewList = () => {
       if (props.previewImage) {
         return props.modelValue.map(renderPreviewItem)
-      }
-    }
-
-    const onClickUpload = async () => {
-      try {
-        const { tempFiles, tempFilePaths, apFilePaths } =
-          await Taro.chooseImage({
-            count: 1,
-            sizeType: ['original', 'compressed'],
-            sourceType: ['album', 'camera']
-          })
-
-        const { maxCount, modelValue, maxSize, disabled } = props
-
-        if (disabled || !tempFiles || !tempFiles.length) {
-          return
-        }
-
-        const remainCount = +maxCount - modelValue.length
-
-        if (files.value.length > remainCount) {
-          files.value = tempFiles.slice(0, remainCount)
-        }
-
-        if (isOversize(files.value, maxSize)) {
-          emit('oversize', files.value)
-
-          if (!files.value.length) {
-            return
-          }
-        }
-
-        const filePath =
-          Taro.getEnv() === 'WEAPP' ? tempFilePaths[0] : apFilePaths[0]
-        const res = await uploadFile(filePath)
-        emit('update:modelValue', [...props.modelValue, res])
-      } catch (e) {
-        console.log(e)
       }
     }
 

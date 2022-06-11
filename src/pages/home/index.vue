@@ -1,15 +1,20 @@
 <template>
-  <v-uploader v-model="files" max-count="3" />
-  {{ OrderType }}
-  {{ OrderState }}
+  <v-uploader
+    v-model="files"
+    max-count="3"
+    :disabled="disabled"
+    :deletable="!disabled"
+    :show-upload="!disabled"
+  />
 </template>
 
 <script setup>
-import { ref, getCurrentInstance } from 'vue'
+import { ref } from 'vue'
 
-const files = ref([])
-const { proxy } = getCurrentInstance()
-const { OrderType, OrderState } = proxy.$dicts(['OrderType', 'OrderState'])
+const disabled = ref(true)
+const files = ref([
+  '/tmao-oss/oss/objects/4s-api/download/7f26af3958944a8db75dce69f118f3b3?md5=a0efd9696d82482495b61b7d1cd6a8f1'
+])
 </script>
 
 <style>
