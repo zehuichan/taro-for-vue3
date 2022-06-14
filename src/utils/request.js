@@ -51,8 +51,15 @@ const http = (options) => {
       ...(options || {}),
       url: process.env.BASE_URL + options.url,
       timeout: options.timeout || TIMEOUT,
-      success: (response) => {
+      success: async (response) => {
         const res = response.data
+        if (res.errcode === 41001) {
+          const cb = await showModal(res.errmsg)
+          if (cb.confirm) {
+            useUserStoreWithOut().logout(true)
+          }
+          reject(res)
+        }
         if (res.errcode !== 0) {
           showToast(res.errmsg)
           reject(res)

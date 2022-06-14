@@ -1,22 +1,12 @@
-import Taro from '@tarojs/taro'
+import request from '@/utils/request'
 
-export function recognition(filePath) {
-  return new Promise((resolve, reject) => {
-    Taro.uploadFile({
-      url: '/tmao-app-auth/common/ocr/recognition',
-      fileType: 'image',
-      filePath: filePath,
-      name: 'image',
-      header: {
-        'content-type': 'multipart/form-data',
-        'app-code': process.env.APPID
-      },
-      success: (response) => {
-        const res = JSON.parse(response.data)
-        console.log(res)
-        resolve(res)
-      },
-      fail: reject
-    })
+export function recognition(data = {}) {
+  return request({
+    url: '/tmao-app-auth/common/ocr/recognition',
+    method: 'POST',
+    data: {
+      ...data,
+      image: `${process.env.BASE_URL}/${data.image}`
+    }
   })
 }

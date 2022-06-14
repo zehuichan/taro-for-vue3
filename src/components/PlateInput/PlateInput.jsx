@@ -19,6 +19,7 @@ export default defineComponent({
     length: makeNumericProp(8),
     focused: Boolean
   },
+  emits: ['focus'],
   setup(props, { emit }) {
     const onTouchStart = (event) => {
       event.stopPropagation()

@@ -1,11 +1,17 @@
+import Taro from '@tarojs/taro'
 import { defineComponent } from 'vue'
-import { createNamespace } from '../utils'
+import {
+  createNamespace,
+  makeNumericProp,
+  makeStringProp,
+  truthProp
+} from '../utils'
 
 const [name] = createNamespace('ocr')
 
 import './index.less'
-import Taro from '@tarojs/taro'
 
+import { uploadFile } from '@/api/oss'
 import { recognition } from '@/api/ocr'
 
 export default defineComponent({
@@ -13,14 +19,28 @@ export default defineComponent({
   props: {
     modelValue: Object,
     disabled: Boolean,
-    readonly: Boolean
+    readonly: Boolean,
+    deletable: truthProp,
+    imageMode: makeStringProp('scaleToFill'),
+    maxCount: makeNumericProp(1),
+    afterRead: Function,
+    showUpload: truthProp,
+    previewSize: [Number, String, Array],
+    previewImage: truthProp
   },
-  emits: ['update:modelValue', 'delete', 'oversize'],
-  setup(props, { slots }) {
+  emits: ['update:modelValue', 'delete'],
+  setup(props, { emit, slots }) {
     const onChange = async ({ tempFiles }) => {
-      const filePath = tempFiles.map((item) => item.path)
-      const res = await recognition(filePath[0])
-      console.log(res)
+      try {
+        const filePath = tempFiles.map((item) => item.path)
+        const url = await uploadFile(filePath[0])
+        const res = await recognition({ image: url, side: 1, type: 1 })
+        console.log(res.data)
+        emit('update:modelValue', { ...props.modelValue, ...res.data })
+      } catch (e) {
+        console.log(e)
+        emit('update:modelValue', {})
+      }
     }
 
     const onClickUpload = () => {
@@ -37,6 +57,10 @@ export default defineComponent({
     }
 
     const renderUpload = () => {
+      if (props.modelValue.length >= props.maxCount || !props.showUpload) {
+        return
+      }
+
       if (slots.default) {
         return (
           <view
@@ -60,6 +84,17 @@ export default defineComponent({
       )
     }
 
-    return () => <view class={name}>{renderUpload()}</view>
+    return () => (
+      <view class={name}>
+        <view
+          class={{
+            [`${name}__wrapper`]: true,
+            [`${name}__wrapper--disabled`]: props.disabled
+          }}
+        >
+          {renderUpload()}
+        </view>
+      </view>
+    )
   }
 })
