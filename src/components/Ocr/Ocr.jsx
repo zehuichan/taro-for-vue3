@@ -1,8 +1,8 @@
 import Taro from '@tarojs/taro'
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import {
   createNamespace,
-  makeNumericProp,
+  getSizeStyle,
   makeStringProp,
   truthProp
 } from '../utils'
@@ -22,20 +22,19 @@ export default defineComponent({
     readonly: Boolean,
     deletable: truthProp,
     imageMode: makeStringProp('scaleToFill'),
-    maxCount: makeNumericProp(1),
-    afterRead: Function,
     showUpload: truthProp,
     previewSize: [Number, String, Array],
     previewImage: truthProp
   },
   emits: ['update:modelValue', 'delete'],
   setup(props, { emit, slots }) {
+    const url = ref('')
+
     const onChange = async ({ tempFiles }) => {
       try {
         const filePath = tempFiles.map((item) => item.path)
-        const url = await uploadFile(filePath[0])
-        const res = await recognition({ image: url, side: 1, type: 1 })
-        console.log(res.data)
+        url.value = await uploadFile(filePath[0])
+        const res = await recognition({ image: url.value, side: 1, type: 1 })
         emit('update:modelValue', { ...props.modelValue, ...res.data })
       } catch (e) {
         console.log(e)
@@ -56,8 +55,52 @@ export default defineComponent({
       })
     }
 
+    // todo 前端拼接url地址
+    const previewImage = async () => {
+      await Taro.previewImage({
+        current: process.env.BASE_URL + url.value,
+        urls: [process.env.BASE_URL + url.value]
+      })
+    }
+
+    const deleteFile = () => {
+      url.value = ''
+      emit('update:modelValue', {})
+    }
+
+    const renderPreview = () => {
+      if (!url.value) {
+        return
+      }
+      return (
+        <view class={{ [`${name}__preview`]: true }}>
+          <view
+            class={{ [`${name}__preview-image`]: true }}
+            style={getSizeStyle(props.previewSize)}
+            onClick={previewImage}
+          >
+            <image v-src={url.value} mode={props.imageMode} />
+          </view>
+          {props.deletable && (
+            <view
+              class={{
+                [`${name}__preview-delete`]: true,
+                [`${name}__preview-delete--shadow`]: true
+              }}
+              onClick={deleteFile}
+            >
+              <nut-icon
+                name="close"
+                class={{ [`${name}__preview-delete-icon`]: true }}
+              />
+            </view>
+          )}
+        </view>
+      )
+    }
+
     const renderUpload = () => {
-      if (props.modelValue.length >= props.maxCount || !props.showUpload) {
+      if (url.value || !props.showUpload) {
         return
       }
 
@@ -92,6 +135,7 @@ export default defineComponent({
             [`${name}__wrapper--disabled`]: props.disabled
           }}
         >
+          {renderPreview()}
           {renderUpload()}
         </view>
       </view>
