@@ -54,7 +54,7 @@ export default defineComponent({
       emit('update:modelValue', [...props.modelValue, res])
 
       if (props.afterRead) {
-        props.afterRead(items)
+        props.afterRead([...props.modelValue, res])
       }
     }
 
