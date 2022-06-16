@@ -53,6 +53,7 @@ export default defineComponent({
       const res = await uploadFile(filePath[0])
       emit('update:modelValue', [...props.modelValue, res])
 
+      console.log('afterRead')
       if (props.afterRead) {
         props.afterRead([...props.modelValue, res])
       }
@@ -66,7 +67,7 @@ export default defineComponent({
         tempFiles = tempFiles.slice(0, remainCount)
       }
 
-      onAfterRead(tempFiles)
+      void onAfterRead(tempFiles)
     }
 
     const onClickUpload = () => {
@@ -78,7 +79,10 @@ export default defineComponent({
         count: 1,
         sizeType: ['original', 'compressed'],
         sourceType: ['album', 'camera'],
-        success: onChange
+        success: onChange,
+        fail: (err) => {
+          console.log(err)
+        }
       })
     }
 

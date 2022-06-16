@@ -4,7 +4,9 @@
       class="ocr"
       v-model="dataForm.idcardface"
       max-count="1"
-      :after-read="onAfterRead('idcardface')"
+      :max-size="5 * 1024 * 1024"
+      @oversize="oversize"
+      :after-read="onAfterRead({ side: 1, type: 1 })"
     >
       <view class="idcard-face">
         <image class="placeholder" src="~@/assets/images/idcard-face.png" />
@@ -15,7 +17,9 @@
       class="ocr"
       v-model="dataForm.idcardside"
       max-count="1"
-      :after-read="onAfterRead('idcardside')"
+      :max-size="5 * 1024 * 1024"
+      @oversize="oversize"
+      :after-read="onAfterRead({ side: 2, type: 1 })"
     >
       <view class="idcard-face">
         <image class="placeholder" src="~@/assets/images/idcard-side.png" />
@@ -28,18 +32,29 @@
 <script setup>
 import { reactive } from 'vue'
 import { recognition } from '@/api/ocr'
+// hooks
+import { useMessage } from '@/hooks'
+
+const { showToast, showLoading, hideLoading } = useMessage()
 
 const dataForm = reactive({
   idcardface: [],
   idcardside: []
 })
+const oversize = (file) => {
+  console.log(file)
+  showToast('图片大小限制为5M')
+}
 const onAfterRead = (type) => async (items) => {
   console.log(type)
   try {
-    const res = await recognition({ image: items[0], side: 1, type: 1 })
+    showLoading('ocr识别中...')
+    const res = await recognition({ image: items[0], ...type })
     console.log(res.data)
   } catch (e) {
     console.log(e)
+  } finally {
+    hideLoading()
   }
 }
 </script>

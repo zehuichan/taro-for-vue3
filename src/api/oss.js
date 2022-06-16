@@ -8,7 +8,7 @@ const uploadKey = `${process.env.BASE_URL}/tmao-oss/oss/objects/${bucketName}/up
 const downloadKey = `/tmao-oss/oss/objects/${bucketName}/download`
 
 export function uploadFile(filePath) {
-  showLoading()
+  showLoading('上传中...')
   return new Promise((resolve, reject) => {
     Taro.uploadFile({
       url: uploadKey,
@@ -21,6 +21,9 @@ export function uploadFile(filePath) {
       },
       success: (response) => {
         const res = JSON.parse(response.data)
+        if (res.errcode !== 0) {
+          reject(res)
+        }
         resolve(`${downloadKey}/${res.data.objectKey}?md5=${res.data.md5}`)
       },
       fail: reject,
