@@ -4,13 +4,15 @@ import { store } from '@/store'
 export const useAppStore = defineStore({
   id: 'app',
   state: () => ({
-    theme: 'light',
-    count: 1
+    globalData: new Map()
   }),
   getters: {},
   actions: {
-    setThemeMode(theme) {
-      this.theme = theme
+    setData(key, value) {
+      this.globalData.set(key, value)
+    },
+    getData(key) {
+      return this.globalData.get(key)
     }
   }
 })
