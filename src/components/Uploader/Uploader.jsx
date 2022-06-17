@@ -36,11 +36,11 @@ export default defineComponent({
       default: Infinity
     }
   },
-  emits: ['update:modelValue', 'delete', 'oversize'],
+  emits: ['update:modelValue', 'delete', 'oversize', 'fail'],
   setup(props, { emit, slots }) {
     const urls = []
 
-    const onAfterRead = async (items) => {
+    const onAfterRead = (items) => {
       if (isOversize(items, props.maxSize)) {
         const result = filterFiles(items, props.maxSize)
         items = result.valid
@@ -50,13 +50,17 @@ export default defineComponent({
         }
       }
       const filePath = items.map((item) => item.path)
-      const res = await uploadFile(filePath[0])
-      emit('update:modelValue', [...props.modelValue, res])
-
-      console.log('afterRead')
-      if (props.afterRead) {
-        props.afterRead([...props.modelValue, res])
-      }
+      uploadFile(filePath[0])
+        .then((res) => {
+          emit('update:modelValue', [...props.modelValue, res])
+          if (props.afterRead) {
+            props.afterRead([...props.modelValue, res])
+          }
+        })
+        .catch((e) => {
+          console.log(e)
+          emit('fail', e)
+        })
     }
 
     const onChange = ({ tempFiles }) => {
@@ -67,7 +71,7 @@ export default defineComponent({
         tempFiles = tempFiles.slice(0, remainCount)
       }
 
-      void onAfterRead(tempFiles)
+      onAfterRead(tempFiles)
     }
 
     const onClickUpload = () => {

@@ -7,6 +7,7 @@ import './assets/less/index.less'
 import { setupNutUI } from './plugins/nutui'
 import { setupDict } from './plugins/dict'
 import { setupStore } from './store'
+import { setupRouterGuard } from './router/guard'
 import { setupGlobDirectives } from './directives'
 import { registerComponents } from './components'
 
@@ -15,6 +16,7 @@ function bootstrap() {
     created() {
       console.log('created')
       this.$instance = Taro.getCurrentInstance()
+      console.log('$instance', this.$instance)
     },
     mounted() {
       console.log('mounted')
@@ -28,6 +30,7 @@ function bootstrap() {
   setupNutUI(app)
   setupDict(app)
   setupStore(app)
+  setupRouterGuard(app)
   setupGlobDirectives(app)
   registerComponents(app)
 

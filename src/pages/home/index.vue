@@ -5,8 +5,9 @@
       v-model="dataForm.idcardface"
       max-count="1"
       :max-size="5 * 1024 * 1024"
-      @oversize="oversize"
       :after-read="onAfterRead({ side: 1, type: 1 })"
+      @oversize="oversize"
+      @fail="fail"
     >
       <view class="idcard-face">
         <image class="placeholder" src="~@/assets/images/idcard-face.png" />
@@ -18,8 +19,8 @@
       v-model="dataForm.idcardside"
       max-count="1"
       :max-size="5 * 1024 * 1024"
-      @oversize="oversize"
       :after-read="onAfterRead({ side: 2, type: 1 })"
+      @oversize="oversize"
     >
       <view class="idcard-side">
         <image class="placeholder" src="~@/assets/images/idcard-side.png" />
@@ -33,8 +34,8 @@
       v-model="dataForm.drvface"
       max-count="1"
       :max-size="5 * 1024 * 1024"
-      @oversize="oversize"
       :after-read="onAfterRead({ side: 1, type: 2 })"
+      @oversize="oversize"
     >
       <view class="drv-face">
         <image class="placeholder" src="~@/assets/images/drv-face.png" />
@@ -46,8 +47,8 @@
       v-model="dataForm.drvside"
       max-count="1"
       :max-size="5 * 1024 * 1024"
-      @oversize="oversize"
       :after-read="onAfterRead({ side: 2, type: 2 })"
+      @oversize="oversize"
     >
       <view class="drv-side">
         <image class="placeholder" src="~@/assets/images/drv-side.png" />
@@ -76,8 +77,11 @@ const oversize = (file) => {
   console.log(file)
   showToast('图片大小限制为5M')
 }
+const fail = (e) => {
+  console.log(e)
+  showToast('图片上传失败')
+}
 const onAfterRead = (type) => async (items) => {
-  console.log(type)
   try {
     showLoading('ocr识别中...')
     const res = await recognition({ image: items[0], ...type })

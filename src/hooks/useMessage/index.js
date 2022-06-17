@@ -1,35 +1,52 @@
 import Taro from '@tarojs/taro'
 
-function showToast(title) {
-  Taro.showToast({
-    title: title,
-    icon: 'none'
-  })
-}
+export default function useMessage() {
+  function showToast(title) {
+    return new Promise((resolve, reject) => {
+      try {
+        Taro.showToast({
+          title: title,
+          icon: 'none',
+          success: resolve,
+          fail: reject
+        }).catch(reject)
+      } catch (e) {
+        reject(e)
+      }
+    })
+  }
 
-function hideToast() {
-  Taro.hideToast()
-}
+  function hideToast() {
+    return new Promise((resolve, reject) => {
+      try {
+        Taro.hideToast({
+          success: resolve,
+          fail: reject
+        })
+      } catch (e) {
+        reject(e)
+      }
+    })
+  }
 
-function showLoading(title) {
-  Taro.showLoading({
-    title: title
-  })
-}
+  function showLoading(title) {
+    Taro.showLoading({
+      title: title
+    })
+  }
 
-function hideLoading() {
-  Taro.hideLoading()
-}
+  function hideLoading() {
+    Taro.hideLoading()
+  }
 
-function showModal(content, title) {
-  return Taro.showModal({
-    title: title,
-    content: content,
-    confirmColor: '#1677FF',
-    cancelColor: '#999999'
-  })
-}
+  function showModal(content, title) {
+    return Taro.showModal({
+      title: title,
+      content: content,
+      confirmColor: '#1677FF',
+      cancelColor: '#999999'
+    })
+  }
 
-export default function useToast() {
   return { showToast, hideToast, showLoading, hideLoading, showModal }
 }
