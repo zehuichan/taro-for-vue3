@@ -81,7 +81,7 @@ const dataForm = reactive({
   // 行驶证
   drvface: [],
   drvside: [],
-  driveType: ['1']
+  driveType: []
 })
 const oversize = (file) => {
   console.log(file)

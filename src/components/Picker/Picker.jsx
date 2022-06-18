@@ -82,12 +82,11 @@ export default defineComponent({
         <nut-input
           {...attrs}
           readonly
-          v-model={text.value}
+          modelValue={text.value}
           right-icon="arrow-right"
           onClick={onClick}
         />
         <nut-picker
-          v-model={props.modelValue}
           v-model:visible={show.value}
           columns={props.columns}
           title={props.title}
