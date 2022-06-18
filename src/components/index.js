@@ -1,6 +1,7 @@
 import Card from '@/components/Card'
 import Cell from '@/components/Cell'
 import Datepicker from '@/components/Datepicker'
+import Picker from '@/components/Picker'
 import PlateInput from '@/components/PlateInput'
 import PlateKeyboard from '@/components/PlateKeyboard'
 import Segmented from '@/components/Segmented'
@@ -12,6 +13,7 @@ const components = [
   Card,
   Cell,
   Datepicker,
+  Picker,
   PlateInput,
   PlateKeyboard,
   Segmented,

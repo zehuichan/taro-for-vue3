@@ -56,23 +56,32 @@
       </view>
     </v-uploader>
   </view>
+  <v-picker
+    label="准驾车型"
+    label-width="128"
+    v-model="dataForm.driveType"
+    placeholder="准驾车型"
+    :columns="DriveType"
+    :border="false"
+  />
 </template>
 
 <script setup>
-import { reactive } from 'vue'
+import { getCurrentInstance, reactive } from 'vue'
 import { recognition } from '@/api/ocr'
 // hooks
 import { useMessage } from '@/hooks'
 
 const { showToast, showLoading, hideLoading } = useMessage()
-
+const { proxy } = getCurrentInstance()
+const { DriveType } = proxy.$dicts(['DriveType'])
 const dataForm = reactive({
   idcardface: [],
   idcardside: [],
   // 行驶证
   drvface: [],
   drvside: [],
-  files: []
+  driveType: ['1']
 })
 const oversize = (file) => {
   console.log(file)
