@@ -1,5 +1,5 @@
 import { computed, defineComponent, ref } from 'vue'
-import { createNamespace } from '../utils'
+import { createNamespace, makeStringProp } from '../utils'
 import dayjs from 'dayjs'
 
 const [name] = createNamespace('datepicker')
@@ -8,23 +8,11 @@ export default defineComponent({
   name,
   props: {
     modelValue: [Number, String, Date],
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    readonly: {
-      type: Boolean,
-      default: false
-    },
-    format: {
-      type: String,
-      default: 'YYYY-MM-DD HH:mm:ss'
-    },
+    disabled: Boolean,
+    readonly: Boolean,
+    format: makeStringProp('YYYY-MM-DD HH:mm:ss'),
     valueFormat: String,
-    title: {
-      type: String,
-      default: '日期'
-    }
+    title: makeStringProp('日期')
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { attrs, emit }) {
