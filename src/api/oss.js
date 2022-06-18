@@ -9,7 +9,7 @@ const downloadKey = `/tmao-oss/oss/objects/${bucketName}/download`
 
 export function uploadFile(filePath) {
   showLoading('上传中...')
-  return new Promise(async (resolve, reject) => {
+  return new Promise((resolve, reject) => {
     try {
       Taro.uploadFile({
         url: uploadKey,

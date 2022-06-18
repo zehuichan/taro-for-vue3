@@ -83,18 +83,21 @@ export default defineComponent({
         count: 1,
         sizeType: ['original', 'compressed'],
         sourceType: ['album', 'camera'],
-        success: onChange,
-        fail: (err) => {
-          console.log(err)
-        }
+        success: onChange
+      }).catch((err) => {
+        console.log(err)
+        console.log({ errcode: -1, errmsg: 'chooseImage:fail' })
       })
     }
 
     // todo 前端拼接url地址
-    const previewImage = async (item) => {
-      await Taro.previewImage({
+    const previewImage = (item) => {
+      Taro.previewImage({
         current: process.env.BASE_URL + item,
         urls: urls
+      }).catch((err) => {
+        console.log(err)
+        console.log({ errcode: -1, errmsg: 'previewImage:fail' })
       })
     }
 
@@ -109,8 +112,8 @@ export default defineComponent({
     const renderPreviewItem = (item, index) => {
       urls.push(process.env.BASE_URL + item)
 
-      return (
-        <view class={{ [`${name}__preview`]: true }} key={index}>
+      const renderPreview = () => {
+        return (
           <view
             class={{ [`${name}__preview-image`]: true }}
             style={getSizeStyle(props.previewSize)}
@@ -118,7 +121,12 @@ export default defineComponent({
           >
             <image v-src={item} mode={props.imageMode} />
           </view>
-          {props.deletable && (
+        )
+      }
+
+      const renderDeleteIcon = () => {
+        if (props.deletable) {
+          return (
             <view
               class={{
                 [`${name}__preview-delete`]: true,
@@ -131,7 +139,14 @@ export default defineComponent({
                 class={{ [`${name}__preview-delete-icon`]: true }}
               />
             </view>
-          )}
+          )
+        }
+      }
+
+      return (
+        <view class={{ [`${name}__preview`]: true }} key={index}>
+          {renderPreview()}
+          {renderDeleteIcon()}
         </view>
       )
     }

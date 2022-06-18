@@ -1,3 +1,4 @@
+export { default as useImage } from './useImage'
 export { default as useMessage } from './useMessage'
 export { default as useNavigator } from './useNavigator'
 export { default as useRect } from './useRect'
