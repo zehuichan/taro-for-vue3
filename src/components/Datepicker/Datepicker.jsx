@@ -32,7 +32,10 @@ export default defineComponent({
 
     const text = computed(() => {
       if (props.modelValue) {
-        return dayjs(props.modelValue).format(props.format)
+        if (dayjs(props.modelValue).isValid()) {
+          return dayjs(props.modelValue).format(props.format)
+        }
+        return props.modelValue
       }
       return ''
     })
