@@ -1,10 +1,14 @@
 import Taro from '@tarojs/taro'
+import { useMessage } from '@/hooks'
+
+const { showLoading, hideLoading } = useMessage()
 
 const bucketName = '4s-api'
 const uploadKey = `${process.env.BASE_URL}/tmao-oss/oss/objects/${bucketName}/upload`
 const downloadKey = `/tmao-oss/oss/objects/${bucketName}/download`
 
 export function uploadFile(filePath) {
+  showLoading('上传中...')
   return new Promise(async (resolve, reject) => {
     try {
       Taro.uploadFile({
@@ -29,7 +33,8 @@ export function uploadFile(filePath) {
             `${downloadKey}/${res.data.objectKey}?md5=${res.data.md5}`
           )
         },
-        fail: reject
+        fail: reject,
+        complete: hideLoading
       })
     } catch (e) {
       return reject({ errcode: -1, errmsg: 'uploadFile:fail' })
