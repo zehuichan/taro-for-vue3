@@ -16,7 +16,6 @@ function bootstrap() {
     created() {
       console.log('created')
       this.$instance = Taro.getCurrentInstance()
-      console.log('$instance', this.$instance)
     },
     mounted() {
       console.log('mounted')

@@ -1,7 +1,7 @@
 <template>
-  <nut-button type="default" shape="square" block @click="openSetting"
-    >打开设置面板</nut-button
-  >
+  <nut-button type="default" shape="square" block @click="openSetting">
+    打开设置面板
+  </nut-button>
   <nut-button
     type="default"
     shape="square"

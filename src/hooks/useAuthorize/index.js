@@ -22,7 +22,6 @@ export default function useAuthorize(option) {
   async function getSettingAsync() {
     try {
       const { withSubscriptions = false } = option || {}
-
       const {
         authSetting: totalAuthSetting = {},
         subscriptionsSetting: totalSubscriptionsSetting,
@@ -53,7 +52,7 @@ export default function useAuthorize(option) {
             if (withSubscriptions && totalSubscriptionsSetting) {
               subscriptionsSetting.value = totalSubscriptionsSetting
             }
-            authSetting.value = totalAuthSetting
+            authSetting.value = { ...authSetting.value, totalAuthSetting }
             resolve(res)
           },
           fail: reject
