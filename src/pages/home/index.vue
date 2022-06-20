@@ -1,106 +1,80 @@
 <template>
-  <view class="photo">
-    <v-uploader
-      class="ocr"
-      v-model="dataForm.idcardface"
-      max-count="1"
-      :max-size="5 * 1024 * 1024"
-      :after-read="onAfterRead({ side: 1, type: 1 })"
-      @oversize="oversize"
-      @fail="fail"
-    >
-      <view class="idcard-face">
-        <image class="placeholder" src="~@/assets/images/idcard-face.png" />
-        <view class="txt">身份证（人像面）</view>
-      </view>
-    </v-uploader>
-    <v-uploader
-      class="ocr"
-      v-model="dataForm.idcardside"
-      max-count="1"
-      :max-size="5 * 1024 * 1024"
-      :after-read="onAfterRead({ side: 2, type: 1 })"
-      @oversize="oversize"
-    >
-      <view class="idcard-side">
-        <image class="placeholder" src="~@/assets/images/idcard-side.png" />
-        <view class="txt">身份证（国徽面）</view>
-      </view>
-    </v-uploader>
-  </view>
-  <view class="photo">
-    <v-uploader
-      class="ocr"
-      v-model="dataForm.drvface"
-      max-count="1"
-      :max-size="5 * 1024 * 1024"
-      :after-read="onAfterRead({ side: 1, type: 2 })"
-      @oversize="oversize"
-    >
-      <view class="drv-face">
-        <image class="placeholder" src="~@/assets/images/drv-face.png" />
-        <view class="txt">行驶证（印章页）</view>
-      </view>
-    </v-uploader>
-    <v-uploader
-      class="ocr"
-      v-model="dataForm.drvside"
-      max-count="1"
-      :max-size="5 * 1024 * 1024"
-      :after-read="onAfterRead({ side: 2, type: 2 })"
-      @oversize="oversize"
-    >
-      <view class="drv-side">
-        <image class="placeholder" src="~@/assets/images/drv-side.png" />
-        <view class="txt">行驶证（条码页）</view>
-      </view>
-    </v-uploader>
-  </view>
-  <v-picker
-    label="准驾车型"
-    label-width="128"
-    v-model="dataForm.driveType"
-    placeholder="准驾车型"
-    :columns="DriveType"
-    :border="false"
-  />
+  <nut-button type="default" shape="square" block @click="openSetting"
+    >打开设置面板</nut-button
+  >
+  <nut-button
+    type="default"
+    shape="square"
+    block
+    :disabled="authSetting.userInfo"
+    open-type="getAuthorize"
+    scope="userInfo"
+    @getauthorize="getauthorize('userInfo')"
+    @error="autherror"
+  >
+    userInfo
+  </nut-button>
+  <nut-button
+    type="default"
+    shape="square"
+    block
+    :disabled="authSetting.phoneNumber"
+    open-type="getAuthorize"
+    scope="phoneNumber"
+    @getauthorize="getauthorize('phoneNumber')"
+    @error="autherror"
+  >
+    phoneNumber
+  </nut-button>
+
+  <image :src="dataForm.aliPayAvatar" />
 </template>
 
 <script setup>
-import { getCurrentInstance, reactive } from 'vue'
-import { recognition } from '@/api/ocr'
-// hooks
-import { useMessage } from '@/hooks'
+import { useAuthorize } from '@/hooks'
+import { reactive } from 'vue'
 
-const { showToast, showLoading, hideLoading } = useMessage()
-const { proxy } = getCurrentInstance()
-const { DriveType } = proxy.$dicts(['DriveType'])
-const dataForm = reactive({
-  idcardface: [],
-  idcardside: [],
-  // 行驶证
-  drvface: [],
-  drvside: [],
-  driveType: []
+const [{ authSetting }, { getSetting, openSetting }] = useAuthorize({
+  withSubscriptions: true
 })
-const oversize = (file) => {
-  console.log(file)
-  showToast('图片大小限制为5M')
-}
-const fail = (e) => {
-  console.log(e)
-  showToast('图片上传失败')
-}
-const onAfterRead = (type) => async (items) => {
-  try {
-    showLoading('ocr识别中...')
-    const res = await recognition({ image: items[0], ...type })
-    console.log(res.data)
-  } catch (e) {
-    console.log(e)
-  } finally {
-    hideLoading()
+
+const dataForm = reactive({
+  phone: '',
+  aliPayNickName: '',
+  aliPayAvatar: ''
+})
+
+const getauthorize = (scope) => {
+  if (scope === 'userInfo') {
+    my.getOpenUserInfo({
+      success: (res) => {
+        const userInfo = JSON.parse(res.response).response // 以下方的报文格式解析两层 response
+        console.log(userInfo)
+        dataForm.aliPayNickName = userInfo.nickName
+        dataForm.aliPayAvatar = userInfo.avatar
+        getSetting()
+      },
+      fail: (err) => {
+        console.log(err)
+      }
+    })
   }
+  if (scope === 'phoneNumber') {
+    my.getPhoneNumber({
+      success: (res) => {
+        const encryptedData = res.response
+        console.log(encryptedData)
+        dataForm.phone = encryptedData
+        getSetting()
+      },
+      fail: (err) => {
+        console.log(err)
+      }
+    })
+  }
+}
+const autherror = (event) => {
+  console.log(event)
 }
 </script>
 
@@ -108,13 +82,5 @@ const onAfterRead = (type) => async (items) => {
 page {
   background-color: #f2f3f5;
   padding: 20rpx;
-}
-
-.photo {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #181818;
-  padding: 32rpx;
 }
 </style>

@@ -1,7 +1,23 @@
-export { default as useImage } from './useImage'
-export { default as useMessage } from './useMessage'
-export { default as useNavigator } from './useNavigator'
-export { default as useRect } from './useRect'
-export { default as useStorage } from './useStorage'
-export { default as watchPausable } from './watchPausable'
-export { default as watchWithFilter } from './watchWithFilter'
+import useAuthorize from './useAuthorize'
+import useEnv from './useEnv'
+import useImage from './useImage'
+import useMessage from './useMessage'
+import useNavigator from './useNavigator'
+import useRect from './useRect'
+import useStorage from './useStorage'
+import useVisible from './useVisible'
+import watchPausable from './watchPausable'
+import watchWithFilter from './watchWithFilter'
+
+export {
+  useAuthorize,
+  useEnv,
+  useImage,
+  useMessage,
+  useNavigator,
+  useRect,
+  useStorage,
+  useVisible,
+  watchPausable,
+  watchWithFilter
+}
