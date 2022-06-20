@@ -28,16 +28,20 @@
   </nut-button>
 
   <image :src="dataForm.aliPayAvatar" />
+  <view>{{ fileInfo }}</view>
+  <nut-button type="info" shape="square" block @click="choose"
+    >useImage</nut-button
+  >
 </template>
 
 <script setup>
-import { useAuthorize } from '@/hooks'
+import { useAuthorize, useImage } from '@/hooks'
 import { reactive } from 'vue'
 
 const [{ authSetting }, { getSetting, openSetting }] = useAuthorize({
   withSubscriptions: true
 })
-
+const [fileInfo, { choose }] = useImage({ count: 15 })
 const dataForm = reactive({
   phone: '',
   aliPayNickName: '',
