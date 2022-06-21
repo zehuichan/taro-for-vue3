@@ -1,85 +1,40 @@
 <template>
-  <nut-button type="default" shape="square" block @click="openSetting">
-    打开设置面板
-  </nut-button>
-  <nut-button
-    type="default"
-    shape="square"
-    block
-    :disabled="authSetting.userInfo"
-    open-type="getAuthorize"
-    scope="userInfo"
-    @getauthorize="getauthorize('userInfo')"
-    @error="autherror"
-  >
-    userInfo
-  </nut-button>
-  <nut-button
-    type="default"
-    shape="square"
-    block
-    :disabled="authSetting.phoneNumber"
-    open-type="getAuthorize"
-    scope="phoneNumber"
-    @getauthorize="getauthorize('phoneNumber')"
-    @error="autherror"
-  >
-    phoneNumber
-  </nut-button>
-
-  <image :src="dataForm.aliPayAvatar" />
-  <view>{{ fileInfo }}</view>
-  <nut-button type="info" shape="square" block @click="choose"
-    >useImage</nut-button
-  >
+  <nut-cell
+    title="useAuthorize"
+    is-link
+    @click="() => navigateTo('/pages/useAuthorize/index')"
+  />
+  <nut-cell
+    title="useFrom"
+    is-link
+    @click="() => navigateTo('/pages/useFrom/index')"
+  />
+  <nut-cell
+    title="useImage"
+    is-link
+    @click="() => navigateTo('/pages/useImage/index')"
+  />
+  <nut-cell
+    title="useNavigator"
+    is-link
+    @click="() => navigateTo('/pages/useNavigator/index')"
+  />
+  <nut-cell
+    title="usePage"
+    is-link
+    @click="() => navigateTo('/pages/usePage/index')"
+  />
+  <nut-cell
+    title="useTimeoutFn"
+    is-link
+    @click="() => navigateTo('/pages/useTimeoutFn/index')"
+  />
 </template>
 
 <script setup>
-import { useAuthorize, useImage } from '@/hooks'
-import { reactive } from 'vue'
+import { useNavigator } from '@/hooks'
 
-const [{ authSetting }, { getSetting, openSetting }] = useAuthorize({
-  withSubscriptions: true
-})
-const [fileInfo, { choose }] = useImage({ count: 15 })
-const dataForm = reactive({
-  phone: '',
-  aliPayNickName: '',
-  aliPayAvatar: ''
-})
-
-const getauthorize = (scope) => {
-  if (scope === 'userInfo') {
-    my.getOpenUserInfo({
-      success: (res) => {
-        const userInfo = JSON.parse(res.response).response // 以下方的报文格式解析两层 response
-        console.log(userInfo)
-        dataForm.aliPayNickName = userInfo.nickName
-        dataForm.aliPayAvatar = userInfo.avatar
-        getSetting()
-      },
-      fail: (err) => {
-        console.log(err)
-      }
-    })
-  }
-  if (scope === 'phoneNumber') {
-    my.getPhoneNumber({
-      success: (res) => {
-        const encryptedData = res.response
-        console.log(encryptedData)
-        dataForm.phone = encryptedData
-        getSetting()
-      },
-      fail: (err) => {
-        console.log(err)
-      }
-    })
-  }
-}
-const autherror = (event) => {
-  console.log(event)
-}
+const [, { navigateTo }] = useNavigator()
 </script>
 
 <style lang="less">
