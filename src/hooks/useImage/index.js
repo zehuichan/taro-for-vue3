@@ -8,7 +8,7 @@ import {
 } from '@tarojs/taro'
 import { ref } from 'vue'
 import { useEnv } from '..'
-import { ENV_TYPE } from '../utils/constant'
+import { ENV_TYPE } from '../utils'
 
 export default function useImage(options) {
   const env = useEnv()
