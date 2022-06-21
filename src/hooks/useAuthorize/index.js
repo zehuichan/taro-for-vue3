@@ -6,7 +6,7 @@ import {
 } from '@tarojs/taro'
 import { ref, watch } from 'vue'
 import { useEnv, useVisible } from '..'
-import { ENV_TYPE } from '../utils/constant'
+import { ENV_TYPE } from '../utils'
 
 // https://github.com/NervJS/taro/issues/11685
 export default function useAuthorize(option) {
