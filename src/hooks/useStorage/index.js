@@ -1,7 +1,7 @@
 import Taro from '@tarojs/taro'
 import { ref, shallowRef, unref } from 'vue'
 import { guessSerializerType } from './guess'
-import { watchPausable } from '@/hooks'
+import { watchPausable } from '..'
 
 export const StorageSerializers = {
   boolean: {

@@ -5,6 +5,7 @@ export default {
     'pages/useAuthorize/index',
     'pages/useFrom/index',
     'pages/useImage/index',
+    'pages/useMessage/index',
     'pages/useNavigator/index',
     'pages/usePage/index',
     'pages/useTimeoutFn/index',

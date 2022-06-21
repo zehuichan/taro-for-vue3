@@ -15,6 +15,11 @@
     @click="() => navigateTo('/pages/useImage/index')"
   />
   <nut-cell
+    title="useMessage"
+    is-link
+    @click="() => navigateTo('/pages/useMessage/index')"
+  />
+  <nut-cell
     title="useNavigator"
     is-link
     @click="() => navigateTo('/pages/useNavigator/index')"

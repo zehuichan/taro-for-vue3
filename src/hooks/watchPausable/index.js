@@ -1,5 +1,5 @@
-import { watchWithFilter } from '@/hooks'
-import { pausableFilter } from '../utils/filters'
+import { watchWithFilter } from '..'
+import { pausableFilter } from '../utils'
 
 export default function watchPausable(source, cb, options = {}) {
   const { eventFilter: filter, ...watchOptions } = options
