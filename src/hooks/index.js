@@ -1,4 +1,6 @@
 import tryOnScopeDispose from './tryOnScopeDispose'
+import until from './until'
+import useAsyncValidator from './useAsyncValidator'
 import useAuthorize from './useAuthorize'
 import useEnv from './useEnv'
 import useFrom from './useFrom'
@@ -16,6 +18,8 @@ import watchWithFilter from './watchWithFilter'
 
 export {
   tryOnScopeDispose,
+  until,
+  useAsyncValidator,
   useAuthorize,
   useEnv,
   useFrom,

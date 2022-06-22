@@ -49,6 +49,7 @@
     "@tarojs/plugin-html": "3.4.12",
     "@tarojs/runtime": "3.4.12",
     "@tarojs/taro": "3.4.12",
+    "async-validator": "^4.2.5",
     "dayjs": "^1.11.3",
     "js-base64": "^3.7.2",
     "pinia": "^2.0.14",

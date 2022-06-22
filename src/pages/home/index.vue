@@ -1,5 +1,10 @@
 <template>
   <nut-cell
+    title="useAsyncValidator"
+    is-link
+    @click="() => navigateTo('/pages/useAsyncValidator/index')"
+  />
+  <nut-cell
     title="useAuthorize"
     is-link
     @click="() => navigateTo('/pages/useAuthorize/index')"

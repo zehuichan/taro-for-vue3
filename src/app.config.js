@@ -2,6 +2,7 @@ export default {
   pages: [
     'pages/home/index',
     'pages/about/index',
+    'pages/useAsyncValidator/index',
     'pages/useAuthorize/index',
     'pages/useFrom/index',
     'pages/useImage/index',
