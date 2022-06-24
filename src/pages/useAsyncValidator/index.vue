@@ -52,9 +52,7 @@ const { pass, isFinished, errorFields, validate } = useAsyncValidator(
   rules
 )
 
-const submit = async () => {
-  validate()
-}
+const submit = async () => validate()
 </script>
 
 <style lang="less">
