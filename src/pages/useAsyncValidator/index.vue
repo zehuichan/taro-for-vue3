@@ -1,58 +1,58 @@
 <template>
-  <view>pass:{{ pass }}</view>
-  <view>isFinished:{{ isFinished }}</view>
   <view>
     <input v-model="form.email" placeholder="email" />
-    <text>{{ errorFields.email?.[0].message }}</text>
     <input v-model="form.name" placeholder="name" />
-    <text>{{ errorFields.name?.[0].message }}</text>
     <input v-model="form.age" placeholder="age" />
-    <text>{{ errorFields.age?.[0].message }}</text>
     <button @click="submit">submit</button>
   </view>
 </template>
 
 <script setup>
 import { reactive } from 'vue'
-import { useAsyncValidator } from '@/hooks'
+import { useAsyncValidator, useMessage } from '@/hooks'
 
-const form = reactive({ email: '', name: '', age: '' })
+const { showToast } = useMessage()
+
+const form = reactive({ email: '471303121@qq.com', name: 'zehuichan', age: '' })
 const rules = {
-  name: [
-    {
-      required: true,
-      message: '必填项'
-    },
-    {
-      type: 'string',
-      min: 5,
-      max: 20,
-      message: '5-20'
-    }
-  ],
-  age: [
-    {
-      required: true,
-      message: '必填项'
-    }
-  ],
   email: [
     {
       required: true,
-      message: '必填项'
+      message: 'email必填项'
     },
     {
       type: 'email',
       message: '正确邮箱'
     }
+  ],
+  name: [
+    {
+      required: true,
+      message: 'name必填项'
+    },
+    {
+      type: 'string',
+      min: 5,
+      max: 20,
+      message: 'name长度5-20'
+    }
+  ],
+  age: [
+    {
+      required: true,
+      message: 'age必填项'
+    }
   ]
 }
-const { pass, isFinished, errorFields, validate } = useAsyncValidator(
-  form,
-  rules
-)
 
-const submit = async () => validate()
+const submit = async () => {
+  const { pass, errorsRes } = useAsyncValidator(form, rules)
+  if (pass.value) {
+    showToast('submit!')
+  } else {
+    showToast(errorsRes.value[0]?.message)
+  }
+}
 </script>
 
 <style lang="less">
@@ -68,6 +68,6 @@ input {
 }
 
 input + input {
-  margin-bottom: 10rpx;
+  margin-top: 10rpx;
 }
 </style>

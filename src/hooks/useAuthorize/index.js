@@ -52,7 +52,7 @@ export default function useAuthorize(option) {
             if (withSubscriptions && totalSubscriptionsSetting) {
               subscriptionsSetting.value = totalSubscriptionsSetting
             }
-            authSetting.value = { ...authSetting.value, totalAuthSetting }
+            authSetting.value = totalAuthSetting
             resolve(res)
           },
           fail: reject
@@ -63,7 +63,7 @@ export default function useAuthorize(option) {
     })
   }
 
-  // WEAPP
+  // todo for WEAPP
   async function authorizeAsync(scope, miniprogram = false) {
     return new Promise((resolve, reject) => {
       if (!scope && env === ENV_TYPE.WEAPP) {

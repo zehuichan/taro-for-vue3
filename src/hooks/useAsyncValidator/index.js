@@ -1,38 +1,32 @@
-import { computed, ref, unref, watchEffect } from 'vue'
+import { ref, unref, watchEffect } from 'vue'
 import Schema from 'async-validator'
 import { until } from '..'
 
-export default function useAsyncValidator(value, rules, options = {}) {
-  const errorInfo = ref()
+export default function useAsyncValidator(value, rules) {
   const isFinished = ref(false)
   const pass = ref(false)
-  const errors = computed(() => errorInfo.value?.errors || [])
-  const errorFields = computed(() => errorInfo.value?.fields || {})
+  const errorsRes = ref([])
+  const errorFields = ref({})
 
-  const { validateOption = {} } = options
-
-  watchEffect(validate)
-
-  async function validate() {
+  watchEffect(() => {
     isFinished.value = false
     pass.value = false
     const validator = new Schema(unref(rules))
-    try {
-      await validator.validate(unref(value), validateOption)
-      pass.value = true
-      errorInfo.value = null
-    } catch (err) {
-      errorInfo.value = err
-    } finally {
-      isFinished.value = true
-    }
-  }
+    void validator.validate(unref(value), (errors, fields) => {
+      if (Array.isArray(errors)) {
+        errorsRes.value = errors
+        errorFields.value = fields
+      } else {
+        pass.value = true
+        isFinished.value = true
+      }
+    })
+  })
 
   const shell = {
     pass,
     isFinished,
-    errorInfo,
-    errors,
+    errorsRes,
     errorFields
   }
 
@@ -47,7 +41,6 @@ export default function useAsyncValidator(value, rules, options = {}) {
 
   return {
     ...shell,
-    validate,
     then(onFulfilled, onRejected) {
       return waitUntilFinished().then(onFulfilled, onRejected)
     }
