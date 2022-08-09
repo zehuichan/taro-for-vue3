@@ -2,7 +2,7 @@ import Taro from '@tarojs/taro'
 import { createApp } from 'vue'
 
 // global css
-import './assets/less/index.less'
+import './styles/index.less'
 
 import { setupNutUI } from './plugins/nutui'
 import { setupDict } from './plugins/dict'

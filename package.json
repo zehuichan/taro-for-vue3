@@ -44,11 +44,11 @@
   "dependencies": {
     "@babel/runtime": "^7.18.9",
     "@nutui/nutui-taro": "^3.1.22",
-    "@tarojs/components": "3.5.1",
+    "@tarojs/components": "3.5.2",
     "@tarojs/plugin-framework-vue3": "3.5.1",
-    "@tarojs/plugin-html": "3.5.1",
-    "@tarojs/runtime": "3.5.1",
-    "@tarojs/taro": "3.5.1",
+    "@tarojs/plugin-html": "3.5.2",
+    "@tarojs/runtime": "3.5.2",
+    "@tarojs/taro": "3.5.2",
     "async-validator": "^4.2.5",
     "dayjs": "^1.11.4",
     "js-base64": "^3.7.2",
@@ -58,15 +58,15 @@
   },
   "devDependencies": {
     "@babel/core": "^7.18.9",
-    "@tarojs/mini-runner": "3.5.1",
-    "@tarojs/webpack-runner": "3.5.1",
+    "@tarojs/mini-runner": "3.5.2",
+    "@tarojs/webpack-runner": "3.5.2",
     "@types/webpack-env": "^1.17.0",
     "@vue/babel-plugin-jsx": "^1.1.1",
-    "babel-preset-taro": "3.5.1",
+    "babel-preset-taro": "3.5.2",
     "cross-env": "^7.0.3",
     "eslint": "^8.20.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-config-taro": "3.5.1",
+    "eslint-config-taro": "3.5.2",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.3.0",
     "husky": "^8.0.1",
@@ -81,8 +81,8 @@
     "stylelint-config-recommended-vue": "^1.4.0",
     "stylelint-config-standard": "^26.0.0",
     "stylelint-order": "^5.0.0",
-    "terser-webpack-plugin": "^5.3.3",
-    "vue-loader": "^17.0.0"
+    "terser-webpack-plugin": "4.2.3",
+    "vue-loader": "^16.8.3"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

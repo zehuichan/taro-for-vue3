@@ -94,7 +94,7 @@ const config = {
       }
     },
     lessLoaderOption: {
-      additionalData: `@import "~@/assets/less/var.less";`
+      additionalData: `@import "~@/styles/var.less";`
     }
   },
   h5: {
