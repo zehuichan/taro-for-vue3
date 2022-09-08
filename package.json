@@ -42,7 +42,7 @@
   "author": "zehuichan",
   "license": "MIT",
   "dependencies": {
-    "@babel/runtime": "^7.18.9",
+    "@babel/runtime": "^7.19.0",
     "@nutui/nutui-taro": "^3.2.1",
     "@tarojs/components": "3.5.5",
     "@tarojs/plugin-framework-vue3": "3.5.5",
@@ -52,12 +52,12 @@
     "async-validator": "^4.2.5",
     "dayjs": "^1.11.5",
     "js-base64": "^3.7.2",
-    "pinia": "^2.0.21",
+    "pinia": "^2.0.22",
     "taro-plugin-pinia": "^1.0.0",
-    "vue": "^3.2.38"
+    "vue": "^3.2.39"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.13",
+    "@babel/core": "^7.19.0",
     "@tarojs/mini-runner": "3.5.5",
     "@tarojs/webpack-runner": "3.5.5",
     "@types/webpack-env": "^1.18.0",
