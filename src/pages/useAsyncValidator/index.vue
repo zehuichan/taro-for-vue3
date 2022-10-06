@@ -10,6 +10,7 @@
 <script setup>
 import { reactive } from 'vue'
 import { useAsyncValidator, useMessage } from '@/hooks'
+import { loginAccount } from '@/api'
 
 const { showToast } = useMessage()
 
@@ -46,6 +47,7 @@ const rules = {
 }
 
 const submit = async () => {
+  await loginAccount()
   const { pass, errorsRes } = useAsyncValidator(form, rules)
   if (pass.value) {
     showToast('submit!')

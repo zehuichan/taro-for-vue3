@@ -16,3 +16,11 @@ export function orderDeliverFuc(data = {}) {
     data
   })
 }
+
+export function loginAccount(data = {}) {
+  return request({
+    url: '/tmao-app-auth/auth/user/login/account',
+    method: 'POST',
+    data
+  })
+}
