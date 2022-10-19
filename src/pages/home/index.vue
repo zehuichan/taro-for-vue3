@@ -1,44 +1,38 @@
 <template>
-  <nut-cell
-    title="useAsyncValidator"
-    is-link
-    @click="() => navigateTo('/pages/useAsyncValidator/index')"
-  />
-  <nut-cell
-    title="useAuthorize"
-    is-link
-    @click="() => navigateTo('/pages/useAuthorize/index')"
-  />
-  <nut-cell
-    title="useFrom"
-    is-link
-    @click="() => navigateTo('/pages/useFrom/index')"
-  />
-  <nut-cell
-    title="useImage"
-    is-link
-    @click="() => navigateTo('/pages/useImage/index')"
-  />
-  <nut-cell
-    title="useMessage"
-    is-link
-    @click="() => navigateTo('/pages/useMessage/index')"
-  />
-  <nut-cell
-    title="useNavigator"
-    is-link
-    @click="() => navigateTo('/pages/useNavigator/index')"
-  />
-  <nut-cell
-    title="usePage"
-    is-link
-    @click="() => navigateTo('/pages/usePage/index')"
-  />
-  <nut-cell
-    title="useTimeoutFn"
-    is-link
-    @click="() => navigateTo('/pages/useTimeoutFn/index')"
-  />
+  <nut-cell-group title="hooks">
+    <nut-cell
+      title="useAsyncValidator"
+      is-link
+      @click="() => navigateTo('/pages/useAsyncValidator/index')"
+    />
+    <nut-cell
+      title="useAuthorize"
+      is-link
+      @click="() => navigateTo('/pages/useAuthorize/index')"
+    />
+    <nut-cell
+      title="useImage"
+      is-link
+      @click="() => navigateTo('/pages/useImage/index')"
+    />
+    <nut-cell
+      title="useTimeoutFn"
+      is-link
+      @click="() => navigateTo('/pages/useTimeoutFn/index')"
+    />
+  </nut-cell-group>
+  <nut-cell-group title="component">
+    <nut-cell
+      title="OSS"
+      is-link
+      @click="() => navigateTo('/pages/uploader/index')"
+    />
+    <nut-cell
+      title="OCR"
+      is-link
+      @click="() => navigateTo('/pages/uploader/index')"
+    />
+  </nut-cell-group>
 </template>
 
 <script setup>

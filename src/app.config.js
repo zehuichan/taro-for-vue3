@@ -2,6 +2,7 @@ export default {
   pages: [
     'pages/home/index',
     'pages/about/index',
+    // hooks
     'pages/useAsyncValidator/index',
     'pages/useAuthorize/index',
     'pages/useFrom/index',
@@ -10,6 +11,8 @@ export default {
     'pages/useNavigator/index',
     'pages/usePage/index',
     'pages/useTimeoutFn/index',
+    // component
+    'pages/uploader/index',
     'pages/demo/index'
   ],
   subPackages: [
