@@ -7,8 +7,9 @@ export default {
     'pages/useAuthorize/index',
     'pages/useFrom/index',
     'pages/useImage/index',
+    'pages/useLocation/index',
     'pages/useMessage/index',
-    'pages/useNavigator/index',
+    'pages/useRouter/index',
     'pages/usePage/index',
     'pages/useTimeoutFn/index',
     // component
