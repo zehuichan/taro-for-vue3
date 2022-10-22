@@ -1,13 +1,11 @@
 <template>
   <view>{{ stackLength }}</view>
-  <view>{{ JSON.stringify(scope) }}</view>
+  <view>{{ pageInstance }}</view>
 </template>
 
 <script setup>
 import { usePage } from '@/hooks'
 
-const [stackLength, { pageInstance, pageStack, useScope }] = usePage()
+const [stackLength, { pageInstance = {} }] = usePage()
 console.log('pageInstance', pageInstance)
-console.log('pageStack', pageStack)
-const scope = useScope()
 </script>
