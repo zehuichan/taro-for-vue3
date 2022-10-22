@@ -5,7 +5,6 @@ const { showModal } = useMessage()
 const makePhoneCall = {
   mounted(el, binding) {
     el.addEventListener('tap', async () => {
-      console.log(binding)
       const cb = await showModal(`您将拨打电话：${binding.value}`, '联系商家')
       if (cb.confirm) {
         Taro.makePhoneCall({

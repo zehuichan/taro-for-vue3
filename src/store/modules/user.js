@@ -6,11 +6,11 @@ import { loginAccount, loginPhone } from '@/api/user'
 // utils
 import cache, { TOKEN_KEY, USER_INFO_KEY } from '@/utils/cache'
 // hooks
-import { useNavigator } from '@/hooks'
+import { useRouter } from '@/hooks'
 // js-base64
 import { encode } from 'js-base64'
 
-const { navigateTo } = useNavigator()
+const [, { navigate }] = useRouter()
 
 export const useUserStore = defineStore({
   id: 'user',
@@ -50,7 +50,7 @@ export const useUserStore = defineStore({
     },
     async logout(goLogin = false) {
       this.setToken(undefined)
-      goLogin && navigateTo('/pages/auth/quick/index')
+      goLogin && navigate('/pages/auth/quick/index')
     }
   }
 })
