@@ -1,6 +1,6 @@
 export const isDef = (val) => typeof val !== 'undefined'
 
-const toString = Object.prototype.toString
+const { toString } = Object.prototype
 export const isBoolean = (val) => typeof val === 'boolean'
 export const isFunction = (val) => typeof val === 'function'
 export const isNumber = (val) => typeof val === 'number'

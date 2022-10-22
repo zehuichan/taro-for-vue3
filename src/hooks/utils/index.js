@@ -1,3 +1,6 @@
+import { stringify } from 'querystring'
+import { isObject } from '.'
+
 export * from './constant'
 export * from './filters'
 export * from './is'
@@ -10,4 +13,13 @@ export function promiseTimeout(ms, throwOnTimeout = false, reason = 'Timeout') {
       setTimeout(resolve, ms)
     }
   })
+}
+
+export function stringfiyUrl(url, options) {
+  let stringfiyUrl = url
+  if (options && isObject(options)) {
+    const hasQuery = stringfiyUrl.includes('?')
+    stringfiyUrl += (hasQuery ? '&' : '?') + stringify(options)
+  }
+  return stringfiyUrl
 }
