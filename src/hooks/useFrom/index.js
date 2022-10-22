@@ -1,17 +1,12 @@
-import { ref, watchEffect } from 'vue'
+import { ref } from 'vue'
 import { usePage } from '..'
 
 export default function useFrom() {
   const [stackLength, { pageStack }] = usePage()
-  const from = ref({})
 
-  watchEffect(() => {
-    let route = {}
-    if (stackLength > 1) {
-      route = pageStack[stackLength - 2]
-    }
-    from.value = route
-  })
+  const generateFromInfo = () => {
+    return stackLength > 1 ? pageStack[stackLength - 2] : null
+  }
 
-  return from
+  return ref(generateFromInfo()).value
 }
