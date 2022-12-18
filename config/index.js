@@ -34,7 +34,7 @@ const config = {
   outputRoot: `dist/${outputRootPath[process.env.NODE_ENV] || 'dev'}/${
     process.env.TARO_ENV
   }`,
-  plugins: ['@tarojs/plugin-html', 'taro-plugin-pinia'],
+  plugins: ['@tarojs/plugin-html'],
   terser: {
     enable: true,
     config: {
@@ -52,8 +52,12 @@ const config = {
     options: {}
   },
   framework: 'vue3',
+  compiler: 'webpack5',
   alias: {
     '@': resolve('src')
+  },
+  cache: {
+    enable: false // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
   },
   mini: {
     // https://github.com/NervJS/taro/issues/11133
