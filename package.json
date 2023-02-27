@@ -2,7 +2,7 @@
   "name": "taro-for-vue3",
   "version": "1.0.0",
   "private": true,
-  "description": "taro+vue3+pinia+nutui3",
+  "description": "taro+vue3+pinia+nutui4",
   "templateInfo": {
     "name": "vue3-pinia",
     "typescript": false,
@@ -25,13 +25,6 @@
     "dev:rn": "npm run build:rn -- --watch",
     "dev:qq": "npm run build:qq -- --watch",
     "dev:quickapp": "npm run build:quickapp -- --watch",
-    "stage:weapp": "cross-env NODE_ENV=staging npm run build:weapp",
-    "stage:alipay": "cross-env NODE_ENV=staging npm run build:alipay",
-    "lint:eslint": "eslint --cache --max-warnings 0  \"{src,mock}/**/*.{vue,js,jsx,ts,tsx}\" --fix",
-    "lint:prettier": "prettier --write  \"src/**/*.{js,json,jsx,tsx,css,less,scss,vue,html,md}\"",
-    "lint:stylelint": "stylelint --cache --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
-    "lint:lint-staged": "lint-staged",
-    "prepare": "husky install",
     "release": "release-it && git push --follow-tags origin master"
   },
   "browserslist": [
@@ -42,84 +35,44 @@
   "author": "zehuichan",
   "license": "MIT",
   "dependencies": {
-    "@babel/runtime": "^7.20.1",
-    "@nutui/nutui-taro": "^3.2.6",
-    "@tarojs/components": "3.5.10",
-    "@tarojs/helper": "3.5.10",
-    "@tarojs/plugin-framework-vue3": "3.5.10",
-    "@tarojs/plugin-html": "^3.5.10",
-    "@tarojs/plugin-platform-alipay": "3.5.10",
-    "@tarojs/plugin-platform-jd": "3.5.10",
-    "@tarojs/plugin-platform-qq": "3.5.10",
-    "@tarojs/plugin-platform-swan": "3.5.10",
-    "@tarojs/plugin-platform-tt": "3.5.10",
-    "@tarojs/plugin-platform-weapp": "3.5.10",
-    "@tarojs/router": "3.5.10",
-    "@tarojs/runtime": "3.5.10",
-    "@tarojs/shared": "3.5.10",
-    "@tarojs/taro": "3.5.10",
-    "@tarojs/taro-h5": "3.5.10",
+    "@babel/runtime": "^7.21.0",
+    "@tarojs/components": "3.6.2",
+    "@tarojs/helper": "3.6.2",
+    "@tarojs/plugin-platform-weapp": "3.6.2",
+    "@tarojs/plugin-platform-alipay": "3.6.2",
+    "@tarojs/plugin-platform-tt": "3.6.2",
+    "@tarojs/plugin-platform-swan": "3.6.2",
+    "@tarojs/plugin-platform-jd": "3.6.2",
+    "@tarojs/plugin-platform-qq": "3.6.2",
+    "@tarojs/plugin-platform-h5": "3.6.2",
+    "@tarojs/runtime": "3.6.2",
+    "@tarojs/shared": "3.6.2",
+    "@tarojs/taro": "3.6.2",
+    "@tarojs/plugin-html": "3.6.2",
+    "@tarojs/plugin-framework-vue3": "3.6.2",
     "async-validator": "^4.2.5",
-    "dayjs": "^1.11.6",
-    "js-base64": "^3.7.2",
-    "pinia": "^2.0.23",
+    "dayjs": "^1.11.7",
+    "js-base64": "^3.7.5",
+    "pinia": "^2.0.32",
     "querystring": "^0.2.1",
-    "vue": "^3.2.44"
+    "vue": "^3.2.47",
+    "@nutui/nutui-taro": "^4.0.2",
+    "@nutui/icons-vue-taro": "^0.0.9"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.0",
-    "@tarojs/cli": "3.5.10",
-    "@tarojs/webpack5-runner": "3.5.10",
-    "@types/webpack-env": "^1.13.6",
-    "@vue/babel-plugin-jsx": "^1.0.6",
-    "@vue/compiler-sfc": "^3.0.0",
-    "babel-preset-taro": "3.5.10",
-    "cross-env": "^7.0.3",
-    "eslint": "^8.27.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-config-taro": "3.5.10",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-vue": "^9.7.0",
-    "husky": "^8.0.2",
-    "lint-staged": "^13.0.3",
-    "postcss": "^8.4.19",
-    "postcss-html": "^1.5.0",
-    "postcss-less": "^6.0.0",
-    "prettier": "^2.7.1",
-    "process": "^0.11.10",
-    "release-it": "^15.5.0",
-    "style-loader": "1.3.0",
-    "stylelint": "14.14.1",
-    "stylelint-config-prettier": "^9.0.4",
-    "stylelint-config-recommended-vue": "^1.4.0",
-    "stylelint-config-standard": "^29.0.0",
-    "stylelint-order": "^5.0.0",
-    "vue-loader": "^17.0.0",
-    "webpack": "5.69.0"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "{!(package)*.json,*.code-snippets,.!(browserslist)*rc}": [
-      "prettier --write--parser json"
-    ],
-    "package.json": [
-      "prettier --write"
-    ],
-    "*.vue": [
-      "eslint --fix",
-      "prettier --write",
-      "stylelint --fix"
-    ],
-    "*.{scss,less,styl,html}": [
-      "stylelint --fix",
-      "prettier --write"
-    ],
-    "*.md": [
-      "prettier --write"
-    ]
+    "@babel/core": "^7.21.0",
+    "@types/webpack-env": "^1.18.0",
+    "webpack": "5.75.0",
+    "@tarojs/webpack5-runner": "3.6.2",
+    "@tarojs/cli": "3.6.2",
+    "@vue/babel-plugin-jsx": "^1.1.1",
+    "@vue/compiler-sfc": "^3.2.47",
+    "babel-preset-taro": "3.6.2",
+    "css-loader": "6.7.3",
+    "release-it": "^15.6.0",
+    "style-loader": "3.3.1",
+    "vue-loader": "^17.0.1",
+    "unplugin-vue-components": "^0.24.0"
   },
   "release-it": {
     "npm": {
