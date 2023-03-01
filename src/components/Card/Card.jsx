@@ -3,7 +3,7 @@ import { createNamespace } from '../utils'
 
 const [name] = createNamespace('card')
 
-import './index.less'
+import './index.scss'
 
 export default defineComponent({
   name,

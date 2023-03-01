@@ -1,8 +1,8 @@
 .v-card {
   border-radius: 12rpx;
-  background-color: @bg-color;
+  background-color: $bg-color;
   overflow: hidden;
-  color: @white;
+  color: $white;
   transition: 0.3s;
 
   &--header {

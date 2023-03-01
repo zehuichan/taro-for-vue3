@@ -3,7 +3,7 @@ import { createNamespace } from '../utils'
 
 const [name] = createNamespace('tool-bar')
 
-import './index.less'
+import './index.scss'
 
 export default defineComponent({
   name,

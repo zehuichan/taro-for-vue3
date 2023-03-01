@@ -9,7 +9,7 @@ import {
 
 const [name] = createNamespace('plate-input')
 
-import './index.less'
+import './index.scss'
 
 export default defineComponent({
   name,

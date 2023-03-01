@@ -11,7 +11,7 @@ import {
 
 const [name] = createNamespace('uploader')
 
-import './index.less'
+import './index.scss'
 
 import { isOversize, filterFiles } from './utils'
 

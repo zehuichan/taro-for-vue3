@@ -3,7 +3,7 @@ import { createNamespace, isArray, isNumber, makeStringProp } from '../utils'
 
 const [name] = createNamespace('space')
 
-import './index.less'
+import './index.scss'
 
 export default defineComponent({
   name,

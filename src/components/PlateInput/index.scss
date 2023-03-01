@@ -1,7 +1,7 @@
-@v-plate-input-text-color: #fff;
-@v-plate-input-font-size: 44rpx;
-@v-plate-input-background-color: #2b2b2b;
-@v-plate-input-cursor-color: #fff;
+$v-plate-input-text-color: #fff;
+$v-plate-input-font-size: 44rpx;
+$v-plate-input-background-color: #2b2b2b;
+$v-plate-input-cursor-color: #fff;
 
 .v-plate-input {
   position: relative;
@@ -22,11 +22,11 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    color: @v-plate-input-text-color;
-    font-size: @v-plate-input-font-size;
+    color: $v-plate-input-text-color;
+    font-size: $v-plate-input-font-size;
     font-weight: 500;
     line-height: 1.2;
-    background-color: @v-plate-input-background-color;
+    background-color: $v-plate-input-background-color;
     border-radius: 6rpx;
   }
 
@@ -36,7 +36,7 @@
     left: 50%;
     width: 1rpx;
     height: 40%;
-    background: @v-plate-input-cursor-color;
+    background: $v-plate-input-cursor-color;
     transform: translate(-50%, -50%);
     animation: 1s cursor-flicker infinite;
   }

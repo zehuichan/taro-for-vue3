@@ -3,7 +3,7 @@ import { createNamespace, truthProp } from '../utils'
 
 const [name] = createNamespace('cell')
 
-import './index.less'
+import './index.scss'
 
 export default defineComponent({
   name,

@@ -8,7 +8,7 @@ import {
 
 const [name] = createNamespace('segmented')
 
-import './index.less'
+import './index.scss'
 
 export default defineComponent({
   name,

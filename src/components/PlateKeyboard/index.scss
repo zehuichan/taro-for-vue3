@@ -1,0 +1,39 @@
+.v-plate-keyboard {
+  width: 100%;
+  padding-bottom: 44rpx;
+  background: #f0f1f6;
+  user-select: none;
+
+  &__body {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 24rpx 0 0 22rpx;
+  }
+}
+
+.v-plate-keyboard-key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 60rpx;
+  height: 80rpx;
+  background-color: #fff;
+  border-radius: 4rpx;
+  color: #000;
+
+  &__wrapper {
+    padding: 0 12rpx 12rpx 0;
+  }
+
+  &__disabled {
+    opacity: 0.4;
+  }
+
+  &__delete {
+    position: absolute;
+    right: 8rpx;
+    bottom: 0;
+  }
+}

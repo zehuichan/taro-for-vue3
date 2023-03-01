@@ -6,7 +6,7 @@ const [name] = createNamespace('plate-keyboard')
 // Components
 import PlateKeyboardKey from './PlateKeyboardKey'
 
-import './index.less'
+import './index.scss'
 
 const SecondPageStatus = {
   DisableAll: 0,

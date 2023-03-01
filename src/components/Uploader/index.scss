@@ -1,12 +1,12 @@
-@uploader-size: 160rpx;
-@uploader-icon-size: 36rpx !important;
-@uploader-icon-color: #dcdee0;
-@uploader-upload-background-color: #f7f8fa;
-@uploader-upload-active-color: #f2f3f5;
-@uploader-delete-color: #fff;
-@uploader-delete-background-color: fade(#000, 70%);
-@uploader-delete-icon-size: 28rpx !important;
-@uploader-disabled-opacity: 0.5;
+$uploader-size: 160rpx;
+$uploader-icon-size: 36rpx !important;
+$uploader-icon-color: #dcdee0;
+$uploader-upload-background-color: #f7f8fa;
+$uploader-upload-active-color: #f2f3f5;
+$uploader-delete-color: #fff;
+$uploader-delete-background-color: fade(#000, 70%);
+$uploader-delete-icon-size: 28rpx !important;
+$uploader-disabled-opacity: 0.5;
 
 .v-uploader {
   position: relative;
@@ -17,7 +17,7 @@
     flex-wrap: wrap;
 
     &--disabled {
-      opacity: @uploader-disabled-opacity;
+      opacity: $uploader-disabled-opacity;
     }
   }
 
@@ -28,22 +28,22 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    width: @uploader-size;
-    height: @uploader-size;
+    width: $uploader-size;
+    height: $uploader-size;
     margin: 0 16rpx 16rpx 0;
-    background: @uploader-upload-background-color;
+    background: $uploader-upload-background-color;
 
     &:active {
-      background-color: @uploader-upload-active-color;
+      background-color: $uploader-upload-active-color;
     }
 
     &--readonly:active {
-      background-color: @uploader-upload-background-color;
+      background-color: $uploader-upload-background-color;
     }
 
     &-icon {
-      color: @uploader-icon-color;
-      font-size: @uploader-icon-size;
+      color: $uploader-icon-color;
+      font-size: $uploader-icon-size;
     }
 
     &-text {
@@ -60,8 +60,8 @@
 
     &-image {
       display: block;
-      width: @uploader-size;
-      height: @uploader-size;
+      width: $uploader-size;
+      height: $uploader-size;
       overflow: hidden;
 
       image {
@@ -77,9 +77,9 @@
       right: 0;
 
       &--shadow {
-        width: @uploader-delete-icon-size;
-        height: @uploader-delete-icon-size;
-        background: @uploader-delete-background-color;
+        width: $uploader-delete-icon-size;
+        height: $uploader-delete-icon-size;
+        background: $uploader-delete-background-color;
         border-radius: 0 0 0 24rpx;
       }
 
@@ -87,8 +87,8 @@
         position: absolute;
         top: 0;
         right: 0;
-        color: @uploader-delete-color;
-        font-size: @uploader-delete-icon-size;
+        color: $uploader-delete-color;
+        font-size: $uploader-delete-icon-size;
         transform: scale(0.5) translate(45%, -35%);
       }
     }

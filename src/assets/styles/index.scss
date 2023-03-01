@@ -1,13 +1,13 @@
-@import 'unit.less';
-@import 'tap.less';
-@import '../assets/fonts/iconfont.less';
+@import 'unit.scss';
+@import 'tap.scss';
+@import '../fonts/iconfont.scss';
 
 body,
 page {
   font-family: PingFangSC-Medium, 'PingFang SC';
   line-height: 1.5715;
-  font-size: @font14;
-  color: @text;
+  font-size: $font14;
+  color: $text;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   background: #f2f3f5;
@@ -90,7 +90,7 @@ div:focus {
 .button--default {
   height: 84rpx !important;
   line-height: 84rpx !important;
-  color: @white !important;
+  color: $white !important;
   border: 1rpx solid rgb(255 255 255 / 60%) !important;
   background-color: transparent !important;
 }

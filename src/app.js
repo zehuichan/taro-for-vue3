@@ -2,13 +2,11 @@ import Taro from '@tarojs/taro'
 import { createApp } from 'vue'
 
 // global css
-import './styles/index.less'
+import './assets/styles/index.scss'
 
-import { setupNutUI } from './plugins/nutui'
-import { setupDict } from './plugins/dict'
 import { setupStore } from './store'
 import { setupRouterGuard } from './router/guard'
-import { setupGlobDirectives } from './directives'
+import { setupGlobDirectives } from './install/directives'
 import { registerComponents } from './components'
 
 function bootstrap() {
@@ -26,8 +24,6 @@ function bootstrap() {
     // 入口组件不需要实现 render 方法，即使实现了也会被 taro 所覆盖
   })
 
-  setupNutUI(app)
-  setupDict(app)
   setupStore(app)
   setupRouterGuard(app)
   setupGlobDirectives(app)

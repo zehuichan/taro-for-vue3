@@ -1,9 +1,9 @@
-@segmented-bg: fade(#000, 4%);
-@segmented-hover-bg: fade(#000, 6%);
-@segmented-selected-bg: #fff;
-@segmented-label-color: fade(#000, 65%);
-@segmented-label-hover-color: #262626;
-@segmented-disabled-color: fade(#000, 25%);
+$segmented-bg: fade(#000, 4%);
+$segmented-hover-bg: fade(#000, 6%);
+$segmented-selected-bg: #fff;
+$segmented-label-color: fade(#000, 65%);
+$segmented-label-hover-color: #262626;
+$segmented-disabled-color: fade(#000, 25%);
 
 .v-segmented {
   box-sizing: border-box;
@@ -18,27 +18,27 @@
   display: inline-flex;
   align-items: stretch;
   justify-items: flex-start;
-  color: @segmented-label-color;
-  background-color: @segmented-bg;
+  color: $segmented-label-color;
+  background-color: $segmented-bg;
   border-radius: 6rpx;
-  box-shadow: 0 0 0 4rpx @segmented-bg;
+  box-shadow: 0 0 0 4rpx $segmented-bg;
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
   // hover/focus styles
   &:not(&-disabled) {
     &:hover,
     &:focus {
-      background-color: @segmented-hover-bg;
-      box-shadow: 0 0 0 4rpx @segmented-hover-bg;
+      background-color: $segmented-hover-bg;
+      box-shadow: 0 0 0 4rpx $segmented-hover-bg;
     }
   }
 
   // block styles
-  &&-block {
+  &-block {
     display: flex;
   }
 
-  &&-block &-item {
+  &-block &-item {
     flex: 1;
     min-width: 0;
   }
@@ -49,16 +49,16 @@
     cursor: pointer;
 
     &-selected {
-      background-color: @segmented-selected-bg;
+      background-color: $segmented-selected-bg;
       border-radius: 2px;
       box-shadow: 0 2px 8px -2px fade(#000, 5%), 0 1px 4px -1px fade(#000, 7%),
-        0 0 1px fade(#000, 8%);
-      color: @segmented-label-hover-color;
+      0 0 1px fade(#000, 8%);
+      color: $segmented-label-hover-color;
     }
 
     &:hover,
     &:focus {
-      color: @segmented-label-hover-color;
+      color: $segmented-label-hover-color;
     }
 
     &-label {
@@ -73,14 +73,14 @@
   }
 
   // size styles
-  &&-lg &-item-label {
+  &-lg &-item-label {
     min-height: 72rpx;
     padding: 0 11rpx;
     font-size: 32rpx;
     line-height: 72rpx;
   }
 
-  &&-sm &-item-label {
+  &-sm &-item-label {
     min-height: 40rpx;
     padding: 0 14rpx;
     font-size: 24rpx;
@@ -89,7 +89,7 @@
 
   &-disabled &-item,
   &-item-disabled {
-    color: @segmented-disabled-color;
+    color: $segmented-disabled-color;
     cursor: not-allowed;
   }
 }

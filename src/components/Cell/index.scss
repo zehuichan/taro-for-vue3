@@ -1,5 +1,5 @@
-@cell-text-color: #fff;
-@cell-value-color: #fff;
+$cell-text-color: #fff;
+$cell-value-color: #fff;
 
 .v-cell {
   position: relative;
@@ -8,7 +8,7 @@
   width: 100%;
   padding: 20rpx 32rpx;
   overflow: hidden;
-  color: @cell-text-color;
+  color: $cell-text-color;
   font-size: 28rpx;
   line-height: 48rpx;
 
@@ -36,13 +36,13 @@
   &__value {
     position: relative;
     overflow: hidden;
-    color: @cell-value-color;
+    color: $cell-value-color;
     text-align: right;
     vertical-align: middle;
     word-wrap: break-word;
 
     &--alone {
-      color: @cell-text-color;
+      color: $cell-text-color;
       text-align: left;
     }
   }
