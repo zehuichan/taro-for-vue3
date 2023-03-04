@@ -1,77 +1,56 @@
 <template>
-  <nut-button type="default" shape="square" block @click="openSetting">
+  <nut-button type="default" shape="square" block @click="open(true)">
     打开设置面板
   </nut-button>
+  <template v-for="auth in [authSetting, subscriptionsSetting]">
+    {{ auth }}
+  </template>
+
   <nut-button
-    type="default"
     shape="square"
+    type="primary"
+    class="gap"
     block
-    :disabled="authSetting.userInfo"
-    open-type="getAuthorize"
-    scope="userInfo"
-    @getauthorize="getauthorize('userInfo')"
-    @error="autherror"
+    @click="handleAuth"
   >
-    userInfo
+    授权
   </nut-button>
   <nut-button
-    type="default"
     shape="square"
+    type="primary"
+    class="gap"
     block
-    :disabled="authSetting.phoneNumber"
-    open-type="getAuthorize"
-    scope="phoneNumber"
-    @getauthorize="getauthorize('phoneNumber')"
-    @error="autherror"
+    @click="handleGetUserInfo"
   >
-    phoneNumber
+    授权
   </nut-button>
-  <image :src="dataForm.aliPayAvatar" />
 </template>
 
 <script setup>
 import { reactive } from 'vue'
-import { useAuthorize } from '@/hooks'
+import { useAuthorize, useLogin, useUserInfo } from '@/hooks'
 
-const [{ authSetting }, { getSetting, openSetting }] = useAuthorize({
-  withSubscriptions: true
-})
-const dataForm = reactive({
-  phone: '',
-  aliPayNickName: '',
-  aliPayAvatar: ''
-})
+const { authSetting, subscriptionsSetting, authorize, open } = useAuthorize(true)
+const [userInfo = {}, { getUserInfo, getUserProfile }] = useUserInfo()
+const { login } = useLogin();
 
-const getauthorize = (scope) => {
-  if (scope === 'userInfo') {
-    my.getOpenUserInfo({
-      success: (res) => {
-        const userInfo = JSON.parse(res.response).response // 以下方的报文格式解析两层 response
-        console.log(userInfo)
-        dataForm.aliPayNickName = userInfo.nickName
-        dataForm.aliPayAvatar = userInfo.avatar
-        getSetting()
-      },
-      fail: (err) => {
-        console.log(err)
-      }
-    })
-  }
-  if (scope === 'phoneNumber') {
-    my.getPhoneNumber({
-      success: (res) => {
-        const encryptedData = res.response
-        console.log(encryptedData)
-        dataForm.phone = encryptedData
-        getSetting()
-      },
-      fail: (err) => {
-        console.log(err)
-      }
-    })
+
+
+async function handleAuth() {
+  try {
+    await authorize('scope.userInfo')
+  } catch (e) {
+    console.log(e)
   }
 }
-const autherror = (event) => {
-  console.log(event)
+
+async function handleGetUserInfo() {
+  try {
+    await login(true)
+    await getUserInfo({ lang: 'zh_CN', withCredentials: true })
+    console.log(userInfo)
+  } catch (e) {
+    console.log(e)
+  }
 }
 </script>
