@@ -9,7 +9,11 @@
     "enhance": false,
     "compileHotReLoad": false,
     "postcss": false,
-    "minified": false
+    "minified": false,
+    "condition": false,
+    "ignoreUploadUnusedFiles": false,
+    "minifyWXSS": false,
+    "minifyWXML": false
   },
   "compileType": "miniprogram"
 }

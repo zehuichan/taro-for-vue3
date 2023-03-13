@@ -16,6 +16,10 @@ import Taro from '@tarojs/taro'
 import { onMounted, ref } from 'vue'
 import { BTManager, ConnectStatus } from '@/vendor/mini-ble'
 
+definePageConfig({
+  navigationBarTitleText: 'bluetooth'
+})
+
 const connectStatus = ref(0)
 const connected = ref(false)
 const device = ref({})

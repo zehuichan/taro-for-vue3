@@ -1,15 +1,15 @@
-import { ref, toRefs } from 'vue'
+import { reactive, toRefs } from 'vue'
 import { getDict } from '@/api/dict'
 
 export default function useDict(...args) {
-  const res = ref({})
+  const res = reactive({})
   return (() => {
     args.forEach((d, index) => {
-      res.value[d] = []
+      res[d] = []
       getDict(d).then((resp) => {
-        res.value[d] = resp.data.map((p) => ({ ...p, text: p.name }))
+        res[d] = resp.data.map((p) => ({ ...p, text: p.name }))
       })
     })
-    return toRefs(res.value)
+    return toRefs(res)
   })()
 }

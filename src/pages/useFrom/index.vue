@@ -5,5 +5,9 @@
 <script setup>
 import { useFrom } from '@/hooks'
 
+definePageConfig({
+  navigationBarTitleText: 'useFrom'
+})
+
 const from = useFrom()
 </script>

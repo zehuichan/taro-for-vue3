@@ -50,6 +50,10 @@
 <script setup>
 import { useDict, useRouter } from '@/hooks'
 
+definePageConfig({
+  navigationBarTitleText: '首页'
+})
+
 const [, { navigate }] = useRouter()
 const { CarType, Position } = useDict('CarType', 'Position')
 </script>
@@ -57,6 +61,6 @@ const { CarType, Position } = useDict('CarType', 'Position')
 <style lang="less">
 page {
   background-color: #f2f3f5;
-  padding: 20rpx;
+  padding: 0 20rpx;
 }
 </style>

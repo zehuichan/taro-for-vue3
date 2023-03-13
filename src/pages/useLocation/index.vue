@@ -13,6 +13,10 @@
 <script setup>
 import { useLocation } from '@/hooks'
 
+definePageConfig({
+  navigationBarTitleText: 'useLocation'
+})
+
 const [location, { get, choose, choosePOI, open, toggleUpdate, on, off }] =
   useLocation({
     isHighAccuracy: true,

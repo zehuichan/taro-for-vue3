@@ -5,9 +5,10 @@ import { createApp } from 'vue'
 import './assets/styles/index.scss'
 
 import { setupStore } from './store'
+import { router, setupRouter } from '@/router'
 import { setupRouterGuard } from './router/guard'
-import { setupGlobDirectives } from './install/directives'
 import { registerComponents } from './components'
+import { setupGlobDirectives } from './install/directives'
 
 function bootstrap() {
   const app = createApp({
@@ -25,7 +26,8 @@ function bootstrap() {
   })
 
   setupStore(app)
-  setupRouterGuard(app)
+  setupRouter(app)
+  setupRouterGuard(router)
   setupGlobDirectives(app)
   registerComponents(app)
 
@@ -34,5 +36,5 @@ function bootstrap() {
 
 console.info('[info] ' + 'BASE_URL', process.env.BASE_URL)
 console.info('[info] ' + 'NODE_ENV', process.env.NODE_ENV)
-console.info('[info] ' + 'AppInfo', __APP_INFO__)
+console.table('[info] ' + 'AppInfo', __APP_INFO__)
 export default bootstrap()

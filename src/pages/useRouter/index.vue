@@ -1,5 +1,5 @@
 <template>
-  <view> 来源页面{{ routeInfo?.from?.route }} </view>
+  <view> 来源页面{{ routeInfo?.from?.route }}</view>
   <nut-cell
     title="跳转TabBar"
     is-link
@@ -51,8 +51,11 @@
 <script setup>
 import { useRouter } from '@/hooks'
 
-const [routeInfo, { navigate, switchTab, relaunch, redirect, back, exit }] =
-  useRouter()
+definePageConfig({
+  navigationBarTitleText: 'useRouter'
+})
+
+const [routeInfo, { navigate, switchTab, relaunch, redirect, back, exit }] = useRouter()
 </script>
 
 <style lang="less">

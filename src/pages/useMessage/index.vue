@@ -31,8 +31,11 @@
 <script setup>
 import { useMessage, useTimeoutFn } from '@/hooks'
 
-const { showToast, showLoading, hideLoading, showAlert, showConfirm } =
-  useMessage()
+definePageConfig({
+  navigationBarTitleText: 'useMessage'
+})
+
+const { showToast, showLoading, hideLoading, showAlert, showConfirm } = useMessage()
 
 useTimeoutFn(() => {
   hideLoading()

@@ -30,10 +30,13 @@
 import { reactive } from 'vue'
 import { useAuthorize, useLogin, useUserInfo } from '@/hooks'
 
+definePageConfig({
+  navigationBarTitleText: 'useAuthorize'
+})
+
 const { authSetting, subscriptionsSetting, authorize, open } = useAuthorize(true)
 const [userInfo = {}, { getUserInfo, getUserProfile }] = useUserInfo()
 const { login } = useLogin();
-
 
 
 async function handleAuth() {

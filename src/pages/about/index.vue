@@ -17,6 +17,10 @@
 <script setup>
 import Taro from '@tarojs/taro'
 
+definePageConfig({
+  navigationBarTitleText: '关于我'
+})
+
 const onClick = (path) => {
   Taro.navigateTo({
     url: path

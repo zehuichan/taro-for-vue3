@@ -29,9 +29,12 @@
 </template>
 
 <script setup>
-import Taro from '@tarojs/taro'
 import { reactive } from 'vue'
 import { recognition } from '@/api/ocr'
+
+definePageConfig({
+  navigationBarTitleText: 'Uploader'
+})
 
 const dataForm = reactive({
   face: [],
@@ -42,20 +45,20 @@ const dataForm = reactive({
 })
 const onAfterRead =
   (info = {}) =>
-  async (items) => {
-    try {
-      const res = await recognition({ image: items[0], ...info })
-      if (info.side == 1) {
-        idcard.name = res.data.name
-        idcard.docNum = res.data.num
+    async (items) => {
+      try {
+        const res = await recognition({ image: items[0], ...info })
+        if (info.side == 1) {
+          idcard.name = res.data.name
+          idcard.docNum = res.data.num
+        }
+        if (info.side == 2) {
+          idcard.docValidEnd = res.data.end_date
+        }
+      } catch (e) {
+        console.log(e)
       }
-      if (info.side == 2) {
-        idcard.docValidEnd = res.data.end_date
-      }
-    } catch (e) {
-      console.log(e)
     }
-  }
 </script>
 
 <style lang="less">

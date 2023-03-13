@@ -11,6 +11,10 @@
 import { reactive } from 'vue'
 import { useAsyncValidator, useMessage } from '@/hooks'
 
+definePageConfig({
+  navigationBarTitleText: 'useAsyncValidator'
+})
+
 const { showToast } = useMessage()
 
 const form = reactive({ email: '471303121@qq.com', name: 'zehuichan', age: '' })

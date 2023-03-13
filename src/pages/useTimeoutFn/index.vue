@@ -15,6 +15,10 @@
 import { ref } from 'vue'
 import { useTimeoutFn } from '@/hooks'
 
+definePageConfig({
+  navigationBarTitleText: 'useTimeoutFn'
+})
+
 const defaultText = `Please wait for 3 seconds`
 const text = ref(defaultText)
 const { isPending, start } = useTimeoutFn(() => {

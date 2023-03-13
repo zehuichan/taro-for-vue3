@@ -2,4 +2,8 @@
   <view> demo </view>
 </template>
 
-<script setup></script>
+<script setup>
+definePageConfig({
+  navigationBarTitleText: 'demo'
+})
+</script>
