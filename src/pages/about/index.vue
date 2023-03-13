@@ -15,11 +15,14 @@
 </template>
 
 <script setup>
-import Taro from '@tarojs/taro'
+import Taro, { useRouter } from '@tarojs/taro'
 
 definePageConfig({
   navigationBarTitleText: '关于我'
 })
+
+const router = useRouter()
+console.log(router)
 
 const onClick = (path) => {
   Taro.navigateTo({

@@ -5,8 +5,6 @@ import { createApp } from 'vue'
 import './assets/styles/index.scss'
 
 import { setupStore } from './store'
-import { router, setupRouter } from '@/router'
-import { setupRouterGuard } from './router/guard'
 import { registerComponents } from './components'
 import { setupGlobDirectives } from './install/directives'
 
@@ -26,8 +24,6 @@ function bootstrap() {
   })
 
   setupStore(app)
-  setupRouter(app)
-  setupRouterGuard(router)
   setupGlobDirectives(app)
   registerComponents(app)
 
