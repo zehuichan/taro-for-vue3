@@ -1,3 +1,6 @@
+// unocss
+import 'uno.css'
+
 import Taro from '@tarojs/taro'
 import { createApp } from 'vue'
 

@@ -14,7 +14,8 @@ export default defineAppConfig({
     'pages/useTimeoutFn/index',
     // component
     'pages/uploader/index',
-    'pages/demo/index'
+    'pages/demo/index',
+    'pages/unocss/index'
   ],
   subPackages: [
     {

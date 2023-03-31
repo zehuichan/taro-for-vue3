@@ -1,5 +1,7 @@
 import ComponentsPlugin from 'unplugin-vue-components/webpack'
 import NutUIResolver from '@nutui/nutui-taro/dist/resolver'
+// 导入unocss
+import UnoCSS from 'unocss/webpack'
 
 import path from 'path'
 import dayjs from 'dayjs'
@@ -34,7 +36,7 @@ const config = {
     375: 2 / 1
   },
   sourceRoot: 'src',
-  outputRoot: `dist/${outputRootPath[process.env.NODE_ENV] || 'dev'}/${
+  outputRoot: `dist/${ outputRootPath[process.env.NODE_ENV] || 'dev' }/${
     process.env.TARO_ENV
   }`,
   plugins: ['@tarojs/plugin-html'],
@@ -74,6 +76,8 @@ const config = {
       chain.plugin('unplugin-vue-components').use(ComponentsPlugin({
         resolvers: [NutUIResolver({ taro: true })]
       }))
+      // https://github.com/unocss/unocss
+      chain.plugin('unocss').use(UnoCSS())
       chain.merge({
         module: {
           rule: [

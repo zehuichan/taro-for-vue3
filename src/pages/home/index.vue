@@ -44,6 +44,13 @@
         @click="navigate('/pages/uploader/index')"
       />
     </nut-cell-group>
+    <nut-cell-group title="unocss">
+      <nut-cell
+        title="unocss"
+        is-link
+        @click="navigate('/pages/unocss/index')"
+      />
+    </nut-cell-group>
   </view>
 </template>
 
