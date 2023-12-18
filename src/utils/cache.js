@@ -1,29 +1,40 @@
 import Taro from '@tarojs/taro'
 
-// token key
-export const TOKEN_KEY = 'TOKEN__'
+// 默认缓存期限为7天
+const DEFAULT_CACHE_TIME = 60 * 60 * 24 * 7
 
-// user info key
-export const USER_INFO_KEY = 'USER__INFO__'
-
-class Cache {
-  setItem(key, value) {
+export class Cache {
+  static setItem(key, value, expire = DEFAULT_CACHE_TIME) {
     try {
-      Taro.setStorageSync(key, JSON.stringify(value))
+      const stringData = JSON.stringify({
+        value,
+        expire: expire !== null ? new Date().getTime() + expire * 1000 : null
+      })
+      Taro.setStorageSync(key, stringData)
     } catch (e) {
       console.log(e)
     }
   }
 
-  getItem(key) {
-    try {
-      return JSON.parse(Taro.getStorageSync(key))
-    } catch (e) {
-      return ''
+  static getItem(key, def = null) {
+    const item = Taro.getStorageSync(key)
+    if (item) {
+      try {
+        const data = JSON.parse(item)
+        const { value, expire } = data
+        // 在有效期内直接返回
+        if (expire === null || expire >= Date.now()) {
+          return value
+        }
+        this.removeItem(key)
+      } catch (e) {
+        return def
+      }
     }
+    return def
   }
 
-  removeItem(key) {
+  static removeItem(key) {
     try {
       Taro.removeStorageSync(key)
     } catch (e) {
@@ -31,7 +42,7 @@ class Cache {
     }
   }
 
-  clear() {
+  static clear() {
     try {
       Taro.clearStorageSync()
     } catch (e) {
@@ -39,5 +50,3 @@ class Cache {
     }
   }
 }
-
-export default new Cache()

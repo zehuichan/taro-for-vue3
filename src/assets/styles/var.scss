@@ -1,0 +1,46 @@
+/* color */
+$black: #000;
+$white: #fff;
+$bg-color: #181818;
+$primary: #74a5e7;
+$success: #b8cb50;
+$danger: #ff8462;
+$warning: #fab646;
+$default: #baa27a;
+
+/* text */
+$text: #00102f;
+$text-l: #4b5563;
+$text-ll: #6b7280;
+$text-lll: #9ca3af;
+
+/* font */
+$font10: 20rpx;
+$font12: 24rpx;
+$font14: 28rpx;
+$font16: 32rpx;
+$font20: 40rpx;
+$font24: 48rpx;
+$font30: 60rpx;
+$font38: 76rpx;
+$font46: 92rpx;
+$font56: 112rpx;
+$font68: 136rpx;
+
+/* font-weight */
+$fw-400: 400;
+$fw-500: 500;
+$fw-600: 600;
+
+/* gutter */
+$gutter-64: 128rpx;
+$gutter-40: 80rpx;
+$gutter-24: 48rpx;
+$gutter-16: 32rpx;
+$gutter-4: 8rpx;
+
+/* https://element-plus.org/zh-CN/component/border.html#%E9%98%B4%E5%BD%B1 */
+$box-shadow: 0px 24rpx 64px 4px rgba(0, 0, 0, .04), 0px 16rpx 40rpx rgba(0, 0, 0, .08);
+$box-shadow-light: 0px 0px 24rpx rgba(0, 0, 0, .12);
+$box-shadow-lighter: 0px 0px 12rpx rgba(0, 0, 0, .12);
+$box-shadow-dark: 0px 112rpx 416rpx 112rpx rgba(0, 0, 0, .08), 0px 24rpx 64px rgba(0, 0, 0, .12), 0px 16rpx 112rpx -16rpx rgba(0, 0, 0, .16);

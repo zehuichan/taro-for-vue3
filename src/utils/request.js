@@ -1,7 +1,8 @@
 import Taro from '@tarojs/taro'
-import cache, { TOKEN_KEY } from '@/utils/cache'
-import { useMessage } from '@/hooks'
+import { useMessage } from '@/hooks/core/useMessage'
 import { useUserStoreWithOut } from '@/store/modules/user'
+import { Cache } from '@/utils/cache'
+import { TOKEN_KEY } from '@/enums/cacheEnum'
 
 const { showToast, showModal } = useMessage()
 
@@ -21,11 +22,11 @@ const interceptor = (chain) => {
   // let each request carry token
   // ['X-Token'] is a custom headers key
   // please modify it according to the actual situation
-  const token = cache.getItem(TOKEN_KEY)
+  const token = Cache.getItem(TOKEN_KEY)
 
   config.header = {
     ...config.header,
-    'app-code': process.env.APPID
+    'app-code': process.env.TARO_APP_ID
   }
 
   if (token) {
@@ -49,7 +50,7 @@ const http = (options) => {
   return new Promise((resolve, reject) => {
     Taro.request({
       ...(options || {}),
-      url: process.env.BASE_URL + options.url,
+      url: process.env.TARO_APP_API + options.url,
       timeout: options.timeout || TIMEOUT,
       success: async (response) => {
         const res = response.data

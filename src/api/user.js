@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function loginAccount(data = {}) {
+export function login(data = {}) {
   return request({
     url: '/tmao-app-auth/auth/user/login/account',
     method: 'POST',
@@ -9,6 +9,14 @@ export function loginAccount(data = {}) {
 }
 
 export function loginPhone(data = {}) {
+  return request({
+    url: '/tmao-app-auth/auth/user/login/phone',
+    method: 'POST',
+    data
+  })
+}
+
+export function getInfo(data = {}) {
   return request({
     url: '/tmao-app-auth/auth/user/login/phone',
     method: 'POST',

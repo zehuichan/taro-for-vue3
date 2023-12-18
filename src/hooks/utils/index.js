@@ -1,9 +1,8 @@
 import { stringify } from 'querystring'
-import { isObject } from '.'
+import { isObject } from '@/utils/is'
 
 export * from './constant'
 export * from './filters'
-export * from './is'
 
 export function promiseTimeout(ms, throwOnTimeout = false, reason = 'Timeout') {
   return new Promise((resolve, reject) => {

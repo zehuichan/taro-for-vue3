@@ -2,51 +2,67 @@ import { defineStore } from 'pinia'
 import { store } from '@/store'
 
 // api
-import { loginAccount, loginPhone } from '@/api/user'
+import { getInfo, login } from '@/api/user'
 // utils
-import cache, { TOKEN_KEY, USER_INFO_KEY } from '@/utils/cache'
+import { Cache } from '@/utils/cache'
+import { TOKEN_KEY, USER_INFO_KEY } from '@/enums/cacheEnum'
 // hooks
-import { useRouter } from '@/hooks'
-// js-base64
-import { encode } from 'js-base64'
+import { useRouter } from '@/hooks/core/useRouter'
 
 const [, { navigate }] = useRouter()
 
 export const useUserStore = defineStore({
   id: 'user',
   state: () => ({
-    userInfo: cache.getItem(USER_INFO_KEY) || null,
-    token: cache.getItem(TOKEN_KEY) || undefined
+    token: undefined,
+    userInfo: null,
+    lastUpdateTime: 0
   }),
-  getters: {},
+  getters: {
+    getToken() {
+      return this.token || Cache.getItem(TOKEN_KEY)
+    },
+    getUserInfo() {
+      return this.userInfo || Cache.getItem(USER_INFO_KEY)
+    },
+    getLastUpdateTime() {
+      return this.lastUpdateTime
+    }
+  },
   actions: {
     setToken(token) {
       this.token = token ? token : '' // for null or undefined value
-      cache.setItem(TOKEN_KEY, token)
+      Cache.setItem(TOKEN_KEY, token)
     },
-    async loginAccount(data) {
+    setUserInfo(info) {
+      this.userInfo = info
+      this.lastUpdateTime = new Date().getTime()
+      Cache.setItem(USER_INFO_KEY, info)
+    },
+    resetState() {
+      this.token = ''
+      this.userInfo = null
+      this.lastUpdateTime = 0
+    },
+    async login(data) {
       try {
-        const res = await loginAccount({
-          account: data.account,
-          password: encode(data.password)
-        })
+        const res = await login(data)
+        console.log(res)
         // save token
-        this.setToken(res.data.tokenValue)
+        this.setToken(res.access_token)
+        return Promise.resolve()
       } catch (e) {
         return Promise.reject(e)
       }
     },
-    async loginPhone(data) {
-      try {
-        const res = await loginPhone({
-          phone: data.phone,
-          smsCaptchaText: data.smsCaptchaText
-        })
-        // save token
-        this.setToken(res.data.tokenValue)
-      } catch (e) {
-        return Promise.reject(e)
-      }
+    async getUserInfoAction() {
+      if (!this.getToken) return null
+
+      const res = await getInfo()
+      const { data: { user = null } } = res
+
+      this.setUserInfo(user)
+      return Promise.resolve(user)
     },
     async logout(goLogin = false) {
       this.setToken(undefined)

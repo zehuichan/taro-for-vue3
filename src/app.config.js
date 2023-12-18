@@ -1,28 +1,14 @@
 export default defineAppConfig({
   pages: [
     'pages/home/index',
-    'pages/about/index',
-    // hooks
-    'pages/useAsyncValidator/index',
-    'pages/useAuthorize/index',
-    'pages/useFrom/index',
-    'pages/useImage/index',
-    'pages/useLocation/index',
-    'pages/useMessage/index',
-    'pages/useRouter/index',
-    'pages/usePage/index',
-    'pages/useTimeoutFn/index',
-    // component
-    'pages/uploader/index',
+    'pages/order/index',
+    'pages/mall/index',
+    'pages/center/index',
+    // 公共页面
+    'pages/checkout/index',
     'pages/demo/index',
-    'pages/unocss/index'
   ],
-  subPackages: [
-    {
-      root: 'pages/account',
-      pages: ['center/index', 'settings/index']
-    }
-  ],
+  subPackages: [],
   window: {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#fff',
@@ -37,12 +23,24 @@ export default defineAppConfig({
     list: [
       {
         pagePath: 'pages/home/index',
-        text: '工作台',
+        text: '首页',
         iconPath: 'assets/tabs/work-bench-inactive.png',
         selectedIconPath: 'assets/tabs/work-bench.png'
       },
       {
-        pagePath: 'pages/about/index',
+        pagePath: 'pages/order/index',
+        text: '点单',
+        iconPath: 'assets/tabs/work-bench-inactive.png',
+        selectedIconPath: 'assets/tabs/work-bench.png'
+      },
+      {
+        pagePath: 'pages/mall/index',
+        text: '商城',
+        iconPath: 'assets/tabs/work-bench-inactive.png',
+        selectedIconPath: 'assets/tabs/work-bench.png'
+      },
+      {
+        pagePath: 'pages/center/index',
         text: '我的',
         iconPath: 'assets/tabs/my-inactive.png',
         selectedIconPath: 'assets/tabs/my.png'

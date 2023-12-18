@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-import { useMessage } from '@/hooks'
+import { useMessage } from '@/hooks/core/useMessage'
 const { showModal } = useMessage()
 
 const makePhoneCall = {

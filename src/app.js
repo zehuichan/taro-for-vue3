@@ -1,7 +1,6 @@
 // unocss
 import 'uno.css'
 
-import Taro from '@tarojs/taro'
 import { createApp } from 'vue'
 
 // global css
@@ -15,7 +14,6 @@ function bootstrap() {
   const app = createApp({
     created() {
       console.log('created')
-      this.$instance = Taro.getCurrentInstance()
     },
     mounted() {
       console.log('mounted')
@@ -33,7 +31,7 @@ function bootstrap() {
   return app
 }
 
-console.info('[info] ' + 'BASE_URL', process.env.BASE_URL)
+console.info('[info] ' + 'TARO_APP_API', process.env.TARO_APP_API)
 console.info('[info] ' + 'NODE_ENV', process.env.NODE_ENV)
 console.table('[info] ' + 'AppInfo', __APP_INFO__)
 export default bootstrap()

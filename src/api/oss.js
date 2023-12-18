@@ -1,10 +1,10 @@
 import Taro from '@tarojs/taro'
-import { useMessage } from '@/hooks'
+import { useMessage } from '@/hooks/core/useMessage'
 
 const { showLoading, hideLoading } = useMessage()
 
 const bucketName = '4s-api'
-const uploadKey = `${process.env.BASE_URL}/tmao-oss/oss/objects/${bucketName}/upload`
+const uploadKey = `${process.env.TARO_APP_API}/tmao-oss/oss/objects/${bucketName}/upload`
 const downloadKey = `/tmao-oss/oss/objects/${bucketName}/download`
 
 export function uploadFile(filePath) {
@@ -18,7 +18,7 @@ export function uploadFile(filePath) {
         name: 'file',
         header: {
           'content-type': 'multipart/form-data',
-          'app-code': process.env.APPID
+          'app-code': process.env.TARO_APP_ID
         },
         success: (response) => {
           const res =

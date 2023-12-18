@@ -7,7 +7,7 @@
 <script setup>
 
 definePageConfig({
-  navigationBarTitleText: '首页'
+  navigationBarTitleText: '收银台'
 })
 </script>
 
